@@ -376,7 +376,6 @@
 </head>
 <body>
 
-    <!-- ส่วนเนื้อหาหลัก -->
     <div class="site-wrapper" id="siteWrapper">
 
         <div class="top-header-container">
@@ -396,7 +395,7 @@
             <img src="https://img2.pic.in.th/1975LOGO.png" alt="1975LOGO" class="logo-crest">
 
             <div class="members-container">
-                <div class="member-box" onclick="playClickEffect()">
+                <div class="member-box" onclick="goToBastienPage()">
                     <div class="member-name">BASTIEN</div>
                     <div class="member-role">MEMBER</div>
                 </div>
@@ -429,7 +428,6 @@
             </a>
         </div>
 
-        <!-- YouTube Music Player UI -->
         <div class="music-player">
             <div class="player-art" id="playerArt" style="background-image: url('https://img.youtube.com/vi/OhKAdBRLhwM/hqdefault.jpg');"></div>
             <div class="player-info">
@@ -455,7 +453,6 @@
 
     </div>
 
-    <!-- YouTube IFrame API Element -->
     <div id="youtube-player"></div>
 
     <script>
@@ -485,7 +482,14 @@
             playClickEffect();
             setTimeout(() => {
                 window.location.href = "https://1975alloriginal.xyz/ceo";
-            }, 300); // หน่วงเวลาเล็กน้อยเพื่อให้เล่นเสียงคลิกทันก่อนเปลี่ยนหน้า
+            }, 300);
+        }
+
+        function goToBastienPage() {
+            playClickEffect();
+            setTimeout(() => {
+                window.location.href = "https://1975alloriginal.xyz/bastien";
+            }, 300);
         }
 
         var tag = document.createElement('script');
