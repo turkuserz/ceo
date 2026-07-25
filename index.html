@@ -17,32 +17,16 @@
             width: 100%;
             font-family: 'Orbitron', sans-serif;
             color: #ffffff;
-            background-color: #0b0b0b;
+            /* รวมภาพพื้นหลังและเลเยอร์ความมืดไว้ที่ CSS เดียวกัน ป้องกันภาพไม่ติด */
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+                        url('https://img5.pic.in.th/file/secure-sv1/2026-07-25-082364ed-0743-4d7a-a3a7-6b1c7f82fdff.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* --- ภาพพื้นหลังแบบแท็กรูปภาพ --- */
-        .bg-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -2;
-        }
-
-        /* เลเยอร์ความมืดทับพื้นหลัง */
-        .bg-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: -1;
         }
 
         /* --- เอฟเฟกต์เฟดอินเปิดเว็บ --- */
@@ -393,11 +377,6 @@
 </head>
 <body>
 
-    <!-- รูปพื้นหลัง -->
-    <img src="https://img5.pic.in.th/file/secure-sv1/2026-07-25-082364ed-0743-4d7a-a3a7-6b1c7f82fdff.jpg" alt="Background" class="bg-image">
-    <div class="bg-overlay"></div>
-<!-- ตัวอย่างการใส่ลิงก์รูปภาพใหม่ -->
-<img src="URL_รูปภาพใหม่ของคุณที่ใช้งานได้จริง" alt=(https://img1.pic.in.th/images/bgbastien.jpg" class="bg-image">
     <!-- ส่วนเนื้อหาหลัก -->
     <div class="site-wrapper" id="siteWrapper">
 
@@ -558,7 +537,6 @@
             }
         });
 
-        // ระบบช่วยปลดล็อกให้เพลงรันอัตโนมัติทันทีที่มีการคลิกหน้าจอครั้งแรก (แก้ปัญหาเบราว์เซอร์บล็อกเสียง)
         document.body.addEventListener('click', function unlockAudio() {
             if (player && typeof player.playVideo === 'function') {
                 player.playVideo();
