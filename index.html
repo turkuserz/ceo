@@ -400,7 +400,7 @@
                     <div class="member-name">BASTIEN</div>
                     <div class="member-role">MEMBER</div>
                 </div>
-                <div class="member-box" onclick="playClickEffect()">
+                <div class="member-box" onclick="goToCeoPage()">
                     <div class="member-name">1975</div>
                     <div class="member-role">LEADER</div>
                 </div>
@@ -479,6 +479,13 @@
         function playClickEffect() {
             clickSound.currentTime = 0;
             clickSound.play().catch(e => console.log("Sound effect blocked:", e));
+        }
+
+        function goToCeoPage() {
+            playClickEffect();
+            setTimeout(() => {
+                window.location.href = "https://1975alloriginal.xyz/ceo.html";
+            }, 300); // หน่วงเวลาเล็กน้อยเพื่อให้เล่นเสียงคลิกทันก่อนเปลี่ยนหน้า
         }
 
         var tag = document.createElement('script');
