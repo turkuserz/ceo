@@ -23,17 +23,14 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- ภาพพื้นหลัง --- */
-        .background-container {
+        /* --- ภาพพื้นหลังแบบแท็กรูปภาพ --- */
+        .bg-image {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://cdn.phototourl.com/free/2026-07-25-082364ed-0743-4d7a-a3a7-6b1c7f82fdff.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
             z-index: -2;
         }
 
@@ -396,14 +393,14 @@
 </head>
 <body>
 
-    <!-- พื้นหลังและเลเยอร์ความมืด -->
-    <div class="background-container"></div>
+    <!-- รูปพื้นหลัง -->
+    <img src="https://img5.pic.in.th/file/secure-sv1/2026-07-25-082364ed-0743-4d7a-a3a7-6b1c7f82fdff.jpg" alt="Background" class="bg-image">
     <div class="bg-overlay"></div>
-
-    <!-- ส่วนห่อหุ้มเนื้อหาทั้งหมดเพื่อทำเอฟเฟกต์เฟดอินแบบสมูท -->
+<!-- ตัวอย่างการใส่ลิงก์รูปภาพใหม่ -->
+<img src="URL_รูปภาพใหม่ของคุณที่ใช้งานได้จริง" alt=(https://img1.pic.in.th/images/bgbastien.jpg" class="bg-image">
+    <!-- ส่วนเนื้อหาหลัก -->
     <div class="site-wrapper" id="siteWrapper">
 
-        <!-- ส่วนหัวข้อด้านบนสุด -->
         <div class="top-header-container">
             <div class="top-header-line"></div>
             <div class="top-header-text">BASTIEN & EVELYN</div>
@@ -436,7 +433,6 @@
             </div>
         </div>
 
-        <!-- ฟุตเตอร์ -->
         <div class="footer-container">
             <div class="footer-line"></div>
             <div class="footer">
@@ -561,6 +557,13 @@
                 player.playVideo();
             }
         });
+
+        // ระบบช่วยปลดล็อกให้เพลงรันอัตโนมัติทันทีที่มีการคลิกหน้าจอครั้งแรก (แก้ปัญหาเบราว์เซอร์บล็อกเสียง)
+        document.body.addEventListener('click', function unlockAudio() {
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
+            }
+        }, { once: true });
 
         function startProgressLoop() {
             clearInterval(progressInterval);
