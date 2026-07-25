@@ -1,0 +1,16 @@
+/* ลบ class .bg-image เดิมออก แล้วเปลี่ยนมาใช้แบบนี้แทน */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+    /* ใส่พื้นหลังตรงนี้แทน */
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+                url('https://img5.pic.in.th/file/secure-sv1/2026-07-25-082364ed-0743-4d7a-a3a7-6b1c7f82fdff.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
