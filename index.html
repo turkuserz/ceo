@@ -75,7 +75,8 @@
             height: 100vh;
             position: relative;
             padding: 0 20px;
-            transform: translateY(-20px);
+            /* จัดให้ป้ายและองค์ประกอบอยู่ตรงกลางพอดิบพอดี */
+            transform: translateY(0px); 
             z-index: 1;
         }
 
@@ -86,6 +87,7 @@
             margin-bottom: 0.15rem;
             text-transform: uppercase;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            text-align: center;
         }
 
         .header-subtitle {
@@ -94,6 +96,7 @@
             color: #b5b5b5;
             margin-bottom: 1.2rem;
             font-weight: 500;
+            text-align: center;
         }
 
         .logo-crest {
@@ -386,11 +389,11 @@
         </audio>
 
         <div class="main-content">
-            <div class="header-title">1975 ORIGINAL</div>
+            <div class="header-title">BASTIEN1975</div>
             <div class="header-subtitle">BET FEARLESS IS KING</div>
 
-            <img src="https://img2.pic.in.th/1975LOGO.png" alt="1975LOGO" class="logo-crest">
-
+            <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_n.png" alt="1975LOGO" width: 400px; class="logo-crest">
+            
             <div class="members-container">
                 <div class="member-box" onclick="goToBastienPage()">
                     <div class="member-name">BASTIEN</div>
@@ -549,7 +552,6 @@
             }
         });
 
-        // ระบบปลดล็อกเสียงอัตโนมัติเมื่อผู้ใช้ขยับเมาส์หรือคลิกหน้าเว็บครั้งแรก (แก้ปัญหาบราวเซอร์บล็อก Autoplay)
         function unlockAudio() {
             if (player && typeof player.playVideo === 'function') {
                 player.playVideo();
@@ -588,6 +590,20 @@
                 player.setVolume(e.target.value);
             }
         });
+
+        // ระบบปลดล็อกเสียงเสริม
+        window.addEventListener('DOMContentLoaded', () => {
+            const unlockAudioInteraction = () => {
+                const volSlider = document.getElementById('volumeSlider');
+                if (volSlider && volSlider.value == "0") {
+                    volSlider.value = "50";
+                }
+                window.removeEventListener('click', unlockAudioInteraction);
+                window.removeEventListener('keydown', unlockAudioInteraction);
+            };
+
+            window.addEventListener('click', unlockAudioInteraction);
+            window.addEventListener('keydown', unlockAudioInteraction);
+        });
     </script>
-</body>
 </html>
