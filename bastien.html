@@ -1131,6 +1131,32 @@
 
     <script>
     </script>
+    <style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0f;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #2a2a38;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #4a4a6a;
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:active {
+        background: #ffffff;
+    }
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #2a2a38 #0a0a0f;
+    }
+</style>
 </body>
 </body>
 </html>
