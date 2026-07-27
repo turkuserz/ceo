@@ -6,7 +6,6 @@
     <title>BASTIEN</title>
         <link rel="icon" type="image/png" href="https://img2.pic.in.th/494689434_680826811541356_487741571349200127_ncced4671567643e2.png">
     <link rel="icon" type="image/png" href="https://img2.pic.in.th/494689434680826811541356487741571349200127ncced4671567643e2.png">
-    <!-- นำเข้าฟอนต์ Orbitron สำหรับหัวข้อและตัวเลขสไตล์ TCG -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -17,7 +16,6 @@
         }
 
         body {
-            /* เปลี่ยนพื้นหลังเป็นสีดำสนิทสไตล์อวกาศ */
             background: #000000;
             color: #f8fafc;
             min-height: 100vh;
@@ -30,7 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* --- ระบบพื้นหลังอวกาศและดาวตก --- */
         .space-bg {
             position: fixed;
             top: 0;
@@ -43,7 +40,6 @@
             overflow: hidden;
         }
 
-        /* ดาวระยิบระยับ */
         .star {
             position: absolute;
             background: #ffffff;
@@ -56,7 +52,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* ดาวตก (Shooting Star) */
         .shooting-star {
             position: absolute;
             height: 2px;
@@ -77,7 +72,6 @@
                 opacity: 0;
             }
         }
-        /* ---------------------------------- */
 
         .container {
             width: 100%;
@@ -89,7 +83,6 @@
             z-index: 1;
         }
 
-        /* ส่วนหัวข้อหลักด้านบน */
         .main-header {
             display: flex;
             flex-direction: column;
@@ -132,7 +125,6 @@
             flex-wrap: wrap;
         }
 
-        /* TCG Card Styling */
         .tcg-card {
             width: 240px;
             height: 335px;
@@ -156,7 +148,6 @@
             border-color: #ffffff;
         }
 
-        /* มุมซ้ายบน: วงกลมเลข Cost */
         .card-cost {
             position: absolute;
             top: 10px;
@@ -177,7 +168,6 @@
             z-index: 5;
         }
 
-        /* ส่วนหัวการ์ด (ชื่อตัวละครและประเภท) */
         .card-header-area {
             margin-left: 45px;
             margin-right: 35px;
@@ -210,7 +200,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* มุมขวาบน: ช่องสี่เหลี่ยมใส่โลโก้ */
         .card-faction {
             position: absolute;
             top: 10px;
@@ -233,7 +222,6 @@
             object-fit: cover;
         }
 
-        /* พื้นที่รูปภาพตรงกลางการ์ด */
         .card-image-box {
             width: 100%;
             height: 140px;
@@ -263,7 +251,6 @@
             z-index: 1;
         }
 
-        /* กล่องข้อความสกิลและความสามารถด้านล่าง */
         .card-text-box {
             flex: 1;
             background: rgba(20, 20, 20, 0.9);
@@ -291,7 +278,6 @@
             padding-top: 2px;
         }
 
-        /* แถบค่าพลังด้านล่างสุด (Stats) พร้อมไอคอน SVG สีขาว */
         .card-stats-bar {
             display: flex;
             justify-content: space-between;
@@ -326,7 +312,6 @@
             flex-shrink: 0;
         }
 
-        /* Modal สำหรับแสดงการ์ดหน้าใหญ่ (Zoom View) */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -405,7 +390,6 @@
             transform: scale(1);
         }
 
-        /* ขยายองค์ประกอบภายใน Modal Card */
         .modal-card .card-cost {
             width: 54px;
             height: 54px;
@@ -484,7 +468,6 @@
             height: 20px;
         }
 
-        /* แถบปุ่มโซเชียลมีเดียสไตล์วงกลม สีดำ-เทา โลโก้เพียวๆ ด้านล่างการ์ด */
         .social-icons-bar {
             display: flex;
             gap: 14px;
@@ -534,7 +517,6 @@
             transform: scale(1.1);
         }
 
-        /* --- สไตล์ส่วนฟุตเตอร์หลัก (คงเหลือเฉพาะข้อความ Copy) --- */
         footer {
             width: 100%;
             max-width: 1100px;
@@ -579,7 +561,6 @@
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
         }
 
-        /* --- ปุ่มโซเชียลตรึงไว้ที่มุมซ้ายล่าง (Bottom-Left Fixed) --- */
         .bottom-left-socials {
             position: fixed;
             bottom: 25px;
@@ -624,31 +605,27 @@
 </head>
 <body>
 
-    <!-- พื้นหลังอวกาศและดาวเคลื่อนไหว -->
     <div class="space-bg" id="spaceBackground"></div>
 
     <div class="container">
-        <!-- หัวข้อหลักด้านบนสุดตรงกลาง -->
         <div class="main-header">
             <div class="main-title">1975 ORIGINAL</div>
             <div class="main-subtitle">BET FEARLESS IS KING</div>
         </div>
         
         <div class="cards-wrapper">
-            <!-- แถวที่ 1 (4 ใบ) -->
             <div class="row">
-                <!-- การ์ดที่ 1: Cyric Bastien -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/cyric.bastien/', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">1</div>
                     <div class="card-header-area">
                         <div class="card-name">Cyric Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png">
                     </div>
                     <div class="card-image-box">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530591822756188280/image.png?ex=6a662237&is=6a64d0b7&hm=759b2715e71500ee8bbce870adba0647fe6668efa9f48fedda82473633e95e89&=&format=webp&quality=lossless" alt="Cyric Artwork">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWpmMnd5NWRlcjhxMDl6cjEydGFzcWhxaXZkY29teW00NGt2MzVxMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/4ilFRqgbzbx4c/giphy.gif" alt="Cyric Artwork">
                     </div>
                     <div class="card-text-box">
                         <div class="card-ability">I’ve never bowed to anyone the way I do to you.</div>
@@ -672,15 +649,14 @@
                     </div>
                 </div>
 
-                <!-- การ์ดที่ 2: Alfred Bastien -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/alfred.bangsaen', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">2</div>
                     <div class="card-header-area">
                         <div class="card-name">Alfred Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png" alt="Logo">
                     </div>
                     <div class="card-image-box">
                         <img src="https://i.pinimg.com/736x/bd/00/e7/bd00e75c46c1abdfee4f313dfcea99da.jpg" alt="Alfred Artwork">
@@ -706,19 +682,17 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- การ์ดที่ 3: Bastien Bastien -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/bastien037', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">3</div>
                     <div class="card-header-area">
                         <div class="card-name">Bastien Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png" alt="Logo">
                     </div>
                     <div class="card-image-box">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530599313405640825/IMG_3605.jpg?ex=6a662931&is=6a64d7b1&hm=c8e779416d2526937aaf11da9977b461f9a360e4bd5a44b16d32b029975cc70b&=&format=webp&width=648&height=864" alt="Bastien Artwork">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWpmMnd5NWRlcjhxMDl6cjEydGFzcWhxaXZkY29teW00NGt2MzVxMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11KzOet1ElBDz2/giphy.gif" alt="Bastien Artwork">
                     </div>
                     <div class="card-text-box">
                         <div class="card-ability">ว่าไงน้องหน้าใหม่ bastien ผู้สร้างอย่างพี่ยินดีกับน้องด้วยออกไปช่วยแม่มึงบ้างนะเล่นกันแต่เกมส์</div>
@@ -741,16 +715,14 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- การ์ดที่ 4: Pxce Bastien -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/pxcest4n#', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">4</div>
                     <div class="card-header-area">
                         <div class="card-name">Pxce Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png" alt="Logo">
                     </div>
                     <div class="card-image-box">
                         <img src="https://i.pinimg.com/236x/e5/b5/5e/e5b55e1105999b0ef6bd6b843e1c5a21.jpg" alt="Pxce Artwork">
@@ -777,21 +749,19 @@
                     </div>
                 </div>
             </div>
-
-            <!-- แถวที่ 2 (3 ใบ -> เติมใบที่ 7 ครบถ้วน) -->
             <div class="row">
                 <!-- การ์ดที่ 5: Meeter Bastien -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/memberbastienclassic', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">5</div>
                     <div class="card-header-area">
                         <div class="card-name">Meeter Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png" alt="Logo">
                     </div>
                     <div class="card-image-box">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530593709614174218/ec6e9f5d-9489-4f27-a15b-eb434632c860.png?ex=6a6623f9&is=6a64d279&hm=f026e25667d6b25ec51b797a41ba49d3fbee5a1fdfbc6fd70852a9b00bf4eb81&=&format=webp&quality=lossless&width=726&height=968" alt="Meeter Artwork">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3d3lwdmE2OTZ0Ym43YmF1eGw3cjBoMWJxc3p6ZG1oemI2bm56eG1neiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/c0PX1PqTeqhbtKMekM/giphy.gif" alt="Meeter Artwork">
                     </div>
                     <div class="card-text-box">
                         <div class="card-ability">Your wife fell for me the moment she saw me.</div>
@@ -814,19 +784,17 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- การ์ดที่ 6: Hyunmin (Hyunmin Bastien) -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/profile.php?id=61580651740291', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">6</div>
                     <div class="card-header-area">
                         <div class="card-name">Hyunmin Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png" alt="Logo">
                     </div>
                     <div class="card-image-box">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530592280140972183/IMG_8394.png?ex=6a6622a4&is=6a64d124&hm=3ec3f918b60b53f1641d24c4e7a7db116138fee92b1c7ad4c9d74f83fa75eb00&=&format=webp&quality=lossless&width=738&height=968">
+                        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3dqcWJmdDJuaWM2NWE1eWhub2c2b2t1cjNpd3YyMXc3dDh4cHhjeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xdgisqRDFyO9G/giphy.gif">
                     </div>
                     <div class="card-text-box">
                         <div class="card-ability">Melody of the night cuts deeper than any blade.</div>
@@ -849,16 +817,14 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- การ์ดที่ 7: Lipta Bastien (เพิ่มกลับมาตามที่ขอ) -->
                 <div class="tcg-card" ondblclick="openCardModal(this, 'https://www.facebook.com/profile.php?id=61577537546444', 'https://www.youtube.com/@bastienboys')">
                     <div class="card-cost">7</div>
                     <div class="card-header-area">
                         <div class="card-name">Lipta Bastien</div>
-                        <div class="card-type">Unit - Vampire Soldier</div>
+                        <div class="card-type">UR/HR</div>
                     </div>
                     <div class="card-faction">
-                        <img src="https://media.discordapp.net/attachments/1506940102738182155/1530640283216253089/asd.png?ex=6a664f59&is=6a64fdd9&hm=5dcfeeeeb4890ba84b74f245f1f29e16ca062cd57342f608d51821037e5d43fc&=&format=webp&quality=lossless&width=958&height=968" alt="Logo">
+                        <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_ncdca1cbd6b69a4b7.png" alt="Logo">
                     </div>
                     <div class="card-image-box">
                         <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t39.30808-6/722986675_122176681100917918_596178477973087790_n.jpg?stp=dst-jpg_tt6&cstp=mx389x259&ctp=s389x259&_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHhMOlEXZ_vpaA0eRjgIhCkqWrMADMM2qapaswAMwzapkenIgOOJ4MzDm6B04htr45tvX_0cRxylFH6KipNdGyx&_nc_ohc=W70WaTRT3lcQ7kNvwEkGiyv&_nc_oc=AdpMtBJwl0b0kqrj6PJVrZ0pOPpr5OssefuG6tcZSRo9PEizUsnHv5ZDKnZuv6J84T0&_nc_zt=23&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=gEqxodFkQ5s3iHi3CqCW3A&_nc_ss=7b2a8&oh=00_AQCzL-hbIaoPy1JO5a0w-8rnIOK637fQxOQQSaInotI_Kg&oe=6A6ABCBE" alt="Lipta Bastien Artwork">
@@ -896,17 +862,13 @@
             </div>
         </footer>
     </div>
-
-    <!-- Modal สำหรับเปิดดูการ์ดขยายใหญ่ -->
     <div class="modal-overlay" id="cardModal" onclick="closeCardModal()">
         <div class="modal-content-wrapper" onclick="event.stopPropagation()">
             <div class="modal-card-container">
                 <button class="modal-close-btn" onclick="closeCardModal()">✕</button>
                 <div class="modal-card" id="modalCardInner">
-                    <!-- ข้อมูลการ์ดที่จะถูกโคลนมาแสดงตอนซูม -->
                 </div>
             </div>
-            <!-- ปุ่มโซเชียลใต้การ์ดตอนซูม -->
             <div class="social-icons-bar" id="modalSocialBar">
                 <a href="#" class="social-circle-btn" id="modalFbBtn" target="_blank" title="Facebook">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -919,7 +881,6 @@
     </div>
 
     <script>
-        // สร้างระบบดาวระยิบระยับและดาวตกพื้นหลังอวกาศ
         const spaceBg = document.getElementById('spaceBackground');
         const starCount = 80;
 
@@ -936,7 +897,6 @@
             spaceBg.appendChild(star);
         }
 
-        // สร้างดาวตก 3 ดวง
         for (let i = 0; i < 3; i++) {
             const shootingStar = document.createElement('div');
             shootingStar.classList.add('shooting-star');
@@ -948,24 +908,20 @@
             spaceBg.appendChild(shootingStar);
         }
 
-        // ฟังก์ชันเปิด Modal ขยายการ์ด
         function openCardModal(cardElement, fbUrl, ytUrl) {
             const modal = document.getElementById('cardModal');
             const modalInner = document.getElementById('modalCardInner');
             const fbBtn = document.getElementById('modalFbBtn');
             const ytBtn = document.getElementById('modalYtBtn');
 
-            // โคลนเนื้อหาการ์ดมาใส่ใน modal
             modalInner.innerHTML = cardElement.innerHTML;
             
-            // ตั้งค่าลิงก์ปุ่มโซเชียล
             fbBtn.href = fbUrl;
             ytBtn.href = ytUrl;
 
             modal.classList.add('active');
         }
 
-        // ฟังก์ชันปิด Modal
         function closeCardModal() {
             const modal = document.getElementById('cardModal');
             modal.classList.remove('active');
@@ -973,7 +929,6 @@
     </script>
 <head>
     <style>
-      /* CSS ปุ่ม BACK สไตล์ Dark UI */
       .back-btn {
         position: fixed;
         top: 16px;
@@ -1021,8 +976,32 @@
        </div>
 
     <script>
-       // โค้ด JavaScript เดิมของคุณ
     </script>
-
+    <style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0f;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #2a2a38;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #4a4a6a;
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:active {
+        background: #ffffff;
+    }
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #2a2a38 #0a0a0f;
+    }
+</style>
 </body> 
 </html>
