@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1975BASTIEN</title>
     <link rel="icon" type="image/png" href="https://img2.pic.in.th/494689434_680826811541356_487741571349200127_ncced4671567643e2.png">
-    <link rel="icon" type="image/png" href="https://img2.pic.in.th/494689434680826811541356487741571349200127ncced4671567643e2.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         *, ::before, ::after {
             box-sizing: border-box;
+        }
+        ::selection {
+            background-color: #555555;
+            color: #ffffff;
+        }
+        ::-moz-selection {
+            background-color: #555555;
+            color: #ffffff;
         }
         body, html {
             margin: 0;
@@ -18,7 +25,7 @@
             width: 100%;
             font-family: 'Orbitron', sans-serif;
             color: #ffffff;
-            background-color: #0b0b0b;
+            background-color: #050505;
             background-image: url('https://img2.pic.in.th/bgbastien.jpg.png');
             background-size: cover;
             background-position: center;
@@ -28,18 +35,23 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- เอฟเฟกต์เฟดอินเปิดเว็บ --- */
         .site-wrapper {
             opacity: 0;
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(1.02);
+            filter: blur(8px);
+            transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 2s cubic-bezier(0.16, 1, 0.3, 1);
             width: 100%;
             height: 100%;
+            will-change: opacity, transform, filter;
         }
         .site-wrapper.loaded {
             opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
         }
 
-        /* --- ส่วนหัวข้อด้านบน (BASTIEN & EVELYN) --- */
         .top-header-container {
             position: fixed;
             top: 33px;
@@ -54,6 +66,7 @@
             flex-grow: 1;
             height: 1px;
             background-color: rgba(255, 255, 255, 0.25);
+            transition: background-color 0.5s ease;
         }
 
         .top-header-text {
@@ -75,41 +88,43 @@
             height: 100vh;
             position: relative;
             padding: 0 20px;
-            /* จัดให้ป้ายและองค์ประกอบอยู่ตรงกลางพอดิบพอดี */
-            transform: translateY(0px); 
             z-index: 1;
         }
 
         .header-title {
-            font-size: 4.6rem;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            margin-bottom: 0.15rem;
+            font-size: 3.8rem;
+            font-weight: 950;
+            letter-spacing: 0.35em;
+            margin-bottom: 0.1rem;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
             text-align: center;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .header-subtitle {
-            font-size: 1.3rem;
-            letter-spacing: 0.3em;
-            color: #b5b5b5;
-            margin-bottom: 1.2rem;
-            font-weight: 500;
+            font-size: 1.15rem;
+            letter-spacing: 0.4em;
+            color: #d0d0d0;
+            margin-bottom: 1rem;
+            font-weight: 700;
             text-align: center;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
         .logo-crest {
-            width: 295px;
+            width: 520px;
+            max-width: 88vw;
             height: auto;
+            margin-top: -10px;
             margin-bottom: 1.2rem;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.45));
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform;
         }
 
         .logo-crest:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
 
         .members-container {
@@ -119,39 +134,38 @@
 
         .member-box {
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.8rem 2.3rem;
+            padding: 0.85rem 2.5rem;
             text-align: center;
-            background: rgba(20, 20, 20, 0.55);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            border-radius: 4px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 6px;
             will-change: transform, background, border-color, box-shadow;
         }
 
         .member-box:hover {
             background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
         }
 
         .member-name {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 0.15em;
         }
 
         .member-role {
-            font-size: 0.6rem;
+            font-size: 0.62rem;
             color: #999;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             margin-top: 0.25rem;
             text-transform: uppercase;
         }
 
-        /* ฟุตเตอร์ */
         .footer-container {
             position: fixed;
             bottom: 20px;
@@ -185,15 +199,15 @@
             color: #ffffff;
             text-decoration: none;
             font-weight: 700;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-block;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
-            animation: whiteGlowPulse 2s infinite alternate;
+            animation: whiteGlowPulse 2.5s infinite alternate;
         }
 
         .footer a:hover {
-            text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 255, 255, 0.9), 0 0 35px rgba(255, 255, 255, 0.6);
-            transform: scale(1.05);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.9);
+            transform: scale(1.06);
         }
 
         @keyframes whiteGlowPulse {
@@ -201,7 +215,7 @@
                 text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 10px rgba(255, 255, 255, 0.3);
             }
             100% {
-                text-shadow: 0 0 12px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.7);
+                text-shadow: 0 0 14px rgba(255, 255, 255, 0.95), 0 0 25px rgba(255, 255, 255, 0.7);
             }
         }
 
@@ -220,60 +234,65 @@
             justify-content: center;
             background: rgba(15, 15, 15, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             color: #ccc;
             text-decoration: none;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, background, border-color, box-shadow;
         }
 
         .social-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             color: #fff;
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
         }
 
         .social-btn svg {
             width: 20px;
             height: 20px;
             fill: currentColor;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .social-btn:hover svg {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
-        /* YouTube Music Player Card */
         .music-player {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 280px;
+            width: 290px;
             background: rgba(15, 15, 15, 0.85);
-            border-radius: 12px;
-            padding: 12px 14px;
+            border-radius: 14px;
+            padding: 14px 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             z-index: 10;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .music-player:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
         .player-art {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -291,7 +310,7 @@
         }
 
         .track-title {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             margin-bottom: 2px;
@@ -301,7 +320,7 @@
         }
 
         .track-artist {
-            font-size: 0.6rem;
+            font-size: 0.62rem;
             color: #aaa;
             letter-spacing: 0.05em;
             margin-bottom: 6px;
@@ -347,7 +366,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.2s;
+            transition: color 0.3s;
         }
 
         .control-btn:hover {
@@ -363,7 +382,7 @@
         }
 
         .volume-slider {
-            width: 50px;
+            width: 55px;
             height: 3px;
             accent-color: #fff;
             cursor: pointer;
@@ -376,7 +395,7 @@
 </head>
 <body>
 
-    <div class="site-wrapper" id="siteWrapper">
+    <div class="site-wrapper loaded" id="siteWrapper">
 
         <div class="top-header-container">
             <div class="top-header-line"></div>
@@ -392,7 +411,7 @@
             <div class="header-title">BASTIEN1975</div>
             <div class="header-subtitle">BET FEARLESS IS KING</div>
 
-            <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_n.png" alt="1975LOGO" width: 400px; class="logo-crest">
+            <img src="https://img1.pic.in.th/images/494689434_680826811541356_487741571349200127_n.png" alt="1975LOGO" class="logo-crest">
             
             <div class="members-container">
                 <div class="member-box" onclick="goToBastienPage()">
@@ -461,19 +480,12 @@
         const progressBar = document.getElementById('progressBar');
         const progressContainer = document.getElementById('progressContainer');
         const volumeSlider = document.getElementById('volumeSlider');
-        const siteWrapper = document.getElementById('siteWrapper');
 
         clickSound.volume = 0.3;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            requestAnimationFrame(() => {
-                siteWrapper.classList.add('loaded');
-            });
-        });
-
         function playClickEffect() {
             clickSound.currentTime = 0;
-            clickSound.play().catch(e => console.log("Sound effect blocked:", e));
+            clickSound.play().catch(e => {});
         }
 
         function goToCeoPage() {
@@ -552,15 +564,6 @@
             }
         });
 
-        function unlockAudio() {
-            if (player && typeof player.playVideo === 'function') {
-                player.playVideo();
-            }
-        }
-
-        document.body.addEventListener('click', unlockAudio, { once: true });
-        document.body.addEventListener('mousemove', unlockAudio, { once: true });
-
         function startProgressLoop() {
             clearInterval(progressInterval);
             progressInterval = setInterval(() => {
@@ -590,20 +593,6 @@
                 player.setVolume(e.target.value);
             }
         });
-
-        // ระบบปลดล็อกเสียงเสริม
-        window.addEventListener('DOMContentLoaded', () => {
-            const unlockAudioInteraction = () => {
-                const volSlider = document.getElementById('volumeSlider');
-                if (volSlider && volSlider.value == "0") {
-                    volSlider.value = "50";
-                }
-                window.removeEventListener('click', unlockAudioInteraction);
-                window.removeEventListener('keydown', unlockAudioInteraction);
-            };
-
-            window.addEventListener('click', unlockAudioInteraction);
-            window.addEventListener('keydown', unlockAudioInteraction);
-        });
     </script>
+</body>
 </html>
