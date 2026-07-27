@@ -516,6 +516,7 @@
 
         var player;
         var progressInterval;
+        let isUserPaused = false;
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
@@ -539,6 +540,13 @@
             event.target.setVolume(50);
             event.target.playVideo();
             startProgressLoop();
+
+            document.body.addEventListener('click', function unlockAudio() {
+                if (player && !isUserPaused) {
+                    player.playVideo();
+                }
+                document.body.removeEventListener('click', unlockAudio);
+            }, { once: true });
         }
 
         function onPlayerStateChange(event) {
@@ -550,6 +558,14 @@
                 playIcon.style.display = 'block';
                 pauseIcon.style.display = 'none';
                 clearInterval(progressInterval);
+            
+                if (!isUserPaused && event.data == YT.PlayerState.PAUSED) {
+                    setTimeout(() => {
+                        if (player && !isUserPaused) {
+                            player.playVideo();
+                        }
+                    }, 500);
+                }
             }
         }
 
@@ -558,8 +574,10 @@
             if (!player) return;
             var state = player.getPlayerState();
             if (state === YT.PlayerState.PLAYING) {
+                isUserPaused = true;
                 player.pauseVideo();
             } else {
+                isUserPaused = false;
                 player.playVideo();
             }
         });
