@@ -30,7 +30,6 @@
         .supervised-title { font-size: 0.65rem; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.25em; margin-bottom: 10px; text-transform: uppercase; }
         .supervised-list { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
         
-        /* ปรับสไตล์ปุ่มกดได้ตรงนี้ */
         .supervised-item { 
             padding: 6px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; 
             font-size: 0.55rem; letter-spacing: 0.15em; color: #ffffff; background: rgba(15, 15, 15, 0.6); 
@@ -127,7 +126,6 @@
             <div class="supervised-container">
                 <div class="supervised-title">SUPERVISED BY</div>
                 <div class="supervised-list">
-                    <!-- ลิงก์ด้านล่างนี้เปลี่ยน # เป็น URL ของคุณได้เลย -->
                     <a href="#" class="supervised-item" onclick="playClickEffect()">SWIFTX</a>
                     <a href="#" class="supervised-item" onclick="playClickEffect()">JOPNOK</a>
                     <a href="#" class="supervised-item" onclick="playClickEffect()">SHIFTX</a>
@@ -139,7 +137,6 @@
                 &copy; 2026 BASTIEN X EVELYN. DESIGN by <a href="https://discord.gg/b9WjUu2bxd" target="blank" onclick="playClickEffect()">Turk Bastien</a>
             </div>
         </div>
-        <!-- (โค้ดส่วนที่เหลือเหมือนเดิม...) -->
         <div class="social-buttons">
             <a href="https://discord.gg/w4nTsbcCJG" target="blank" class="social-btn" title="Discord" onclick="playClickEffect()">
                 <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.011c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -149,7 +146,6 @@
             </a>
         </div>
         <div class="music-player" id="musicPlayer">
-            <!-- (โค้ด Music Player เดิม...) -->
              <div class="player-mini-content">
                 <div class="player-art" id="playerArtMini" style="background-image: url('https://img.youtube.com/vi/dC9QIUKviJU/hqdefault.jpg');" onclick="togglePlayerSize()">
                     <div class="player-art-overlay">
@@ -165,20 +161,17 @@
                     <svg id="miniPauseIcon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
                 </button>
             </div>
-            <!-- (ส่วนขยายเครื่องเล่นเดิม...) -->
         </div>
     </div>
     <div id="youtube-player"></div>
     <script>
         const clickSound = document.getElementById('clickSound');
         const musicPlayer = document.getElementById('musicPlayer');
-        // ... (JS เดิม)
         function playClickEffect() { clickSound.currentTime = 0; clickSound.play().catch(e => {}); }
         function togglePlayerSize() { playClickEffect(); musicPlayer.classList.toggle('expanded'); }
         function goToCeoPage() { playClickEffect(); setTimeout(() => { window.location.href = "https://1975alloriginal.xyz/ceo"; }, 300); }
         function goToBastienPage() { playClickEffect(); setTimeout(() => { window.location.href = "https://1975alloriginal.xyz/bastien"; }, 300); }
         function goToEvelynPage() { playClickEffect(); setTimeout(() => { window.location.href = "https://1975alloriginal.xyz/evelyn"; }, 300); }
-        // ... (JS เดิมต่อจนจบ)
         var tag = document.createElement('script'); tag.src = "https://www.youtube.com/iframe_api"; var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); var player; var progressInterval; let isUserPaused = false;
         function onYouTubeIframeAPIReady() { player = new YT.Player('youtube-player', { height: '0', width: '0', videoId: 'dC9QIUKviJU', playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1, 'playlist': 'dC9QIUKviJU' }, events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange } }); }
         function onPlayerReady(event) { event.target.setVolume(50); event.target.playVideo(); startProgressLoop(); document.body.addEventListener('click', function unlockAudio() { if (player && !isUserPaused) { player.playVideo(); } document.body.removeEventListener('click', unlockAudio); }, { once: true }); }
