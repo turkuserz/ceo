@@ -64,10 +64,6 @@
             transform: translateY(-2px);
         }
 
-        .back-btn:active {
-            transform: translateY(0);
-        }
-
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -191,7 +187,6 @@
                         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.3s ease;
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, opacity;
         }
 
         .card:hover {
@@ -199,14 +194,6 @@
             border-color: rgba(255, 255, 255, 0.25);
             background: linear-gradient(135deg, rgba(35, 35, 35, 0.85) 0%, rgba(18, 18, 18, 0.95) 100%);
             box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.04);
-        }
-
-        .card.hidden {
-            display: none !important;
-        }
-
-        .section-block.hidden {
-            display: none !important;
         }
 
         .card-left {
@@ -324,30 +311,16 @@
             font-size: 1rem;
             padding: 50px 20px;
             display: none;
-            animation: fadeIn 0.4s ease-out;
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <button onclick="history.back()" class="back-btn">
-      &larr; BACK
-    </button>
+    <button onclick="history.back()" class="back-btn">&larr; BACK</button>
 
     <div class="container">
         <header>
@@ -364,346 +337,78 @@
 
         <div id="noResults" class="no-results">No members found matching your search.</div>
 
+        <!-- LEADERS -->
         <div class="section-block" id="leadersSection">
-            <div class="section-title">LEADERS <span id="leadersCount">(0)</span></div>
+            <div class="section-title">LEADERS</div>
             <div class="grid">
+                <!-- Tonhom -->
                 <div class="card">
                     <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDc1Z3htMnMwb21kdW94MmJlcXI2YWltM202dDYzeGRvbGpjOGIwMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eOuv6bAJx75eYXzdBW/giphy.gif" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Tonhom Jopnok</span>
-                            <span class="role-badge leader-badge">LEADER</span>
-                        </div>
+                        <div class="avatar"><img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDc1Z3htMnMwb21kdW94MmJlcXI2YWltM202dDYzeGRvbGpjOGIwMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eOuv6bAJx75eYXzdBW/giphy.gif" alt="avatar"><div class="status-dot"></div></div>
+                        <div class="info"><span class="name">Tonhom Jopnok</span><span class="role-badge leader-badge">LEADER</span></div>
                     </div>
-                    <a href="https://www.facebook.com/Tonhomzz" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
+                    <a href="https://www.facebook.com/Tonhomzz" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                </div>
+                <!-- Bit -->
+                <div class="card">
+                    <div class="card-left">
+                        <div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div>
+                        <div class="info"><span class="name">Bit Jopnok</span><span class="role-badge leader-badge">LEADER</span></div>
+                    </div>
+                    <a href="https://www.facebook.com/bit.dept.2025" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                </div>
+                <!-- Fran -->
+                <div class="card">
+                    <div class="card-left">
+                        <div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div>
+                        <div class="info"><span class="name">Fran Jopnok</span><span class="role-badge leader-badge">LEADER</span></div>
+                    </div>
+                    <a href="https://www.facebook.com/Franbkk" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
                 </div>
             </div>
         </div>
 
+        <!-- MEMBERS -->
         <div class="section-block" id="membersSection">
-            <div class="section-title">MEMBERS <span id="membersCount">(0)</span></div>
+            <div class="section-title">MEMBERS</div>
             <div class="grid">
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Fran Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/Franbkk" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Meda Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/meda.tesfaye.2024" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Meimi Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=100077366314928" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Melin Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/wasdwasdw555555" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Tsu Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=61593189476759" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Peach Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/cynthialwaysimissyouu" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Switch Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=61581113285401" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Justcryyy Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/chris.bastien.2024" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Meinhard Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/gzpsa" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Dashtyr Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=61578737536772" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Nept Jopok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=61582977637751" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Minho Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=61585577447201" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Kara Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/profile.php?id=61552745664911" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Kheiw Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/kheiw.hahah.kjet" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
-                <div class="card">
-                    <div class="card-left">
-                        <div class="avatar">
-                            <img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar">
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info">
-                            <span class="name">Beta Jopnok</span>
-                            <span class="role-badge member-badge">MEMBER</span>
-                        </div>
-                    </div>
-                    <a href="https://www.facebook.com/betarank1" target="_blank" class="social-btn" title="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                    </a>
-                </div>
+                <!-- รายชื่อ Member เดิม (ยกเว้น Fran) -->
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Meda Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/meda.tesfaye.2024" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Meimi Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=100077366314928" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Melin Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/wasdwasdw555555" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Tsu Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=61593189476759" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Peach Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/cynthialwaysimissyouu" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Switch Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=61581113285401" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Justcryyy Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/chris.bastien.2024" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Meinhard Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/gzpsa" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Dashtyr Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=61578737536772" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Nept Jopok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=61582977637751" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Minho Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=61585577447201" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Kara Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/profile.php?id=61552745664911" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Kheiw Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/kheiw.hahah.kjet" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+                <div class="card"><div class="card-left"><div class="avatar"><img src="https://img1.pic.in.th/images/jopnokkk.png" alt="avatar"><div class="status-dot"></div></div><div class="info"><span class="name">Beta Jopnok</span><span class="role-badge member-badge">MEMBER</span></div></div><a href="https://www.facebook.com/betarank1" target="_blank" class="social-btn"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.getElementById("searchInput");
-            const leadersSection = document.getElementById("leadersSection");
-            const membersSection = document.getElementById("membersSection");
-            const noResults = document.getElementById("noResults");
-            
-            const leaderCards = leadersSection.querySelectorAll(".card");
-            const memberCards = membersSection.querySelectorAll(".card");
+        // ฟังก์ชันสำหรับค้นหา (คงเดิม)
+        document.getElementById("searchInput").addEventListener("input", function() {
+            let filter = this.value.toLowerCase();
+            let cards = document.querySelectorAll(".card");
+            let anyVisible = false;
 
-            const leadersCountEl = document.getElementById("leadersCount");
-            const membersCountEl = document.getElementById("membersCount");
-
-            function updateCounts() {
-                const visibleLeaders = leadersSection.querySelectorAll(".card:not(.hidden)").length;
-                const visibleMembers = membersSection.querySelectorAll(".card:not(.hidden)").length;
-
-                leadersCountEl.textContent = `(${visibleLeaders})`;
-                membersCountEl.textContent = `(${visibleMembers})`;
-
-                if (visibleLeaders === 0) {
-                    leadersSection.classList.add("hidden");
+            cards.forEach(card => {
+                let name = card.querySelector(".name").innerText.toLowerCase();
+                if (name.includes(filter)) {
+                    card.style.display = "flex";
+                    anyVisible = true;
                 } else {
-                    leadersSection.classList.remove("hidden");
+                    card.style.display = "none";
                 }
-
-                if (visibleMembers === 0) {
-                    membersSection.classList.add("hidden");
-                } else {
-                    membersSection.classList.remove("hidden");
-                }
-
-                if (visibleLeaders === 0 && visibleMembers === 0) {
-                    noResults.style.display = "block";
-                } else {
-                    noResults.style.display = "none";
-                }
-            }
-
-            searchInput.addEventListener("input", function(e) {
-                const query = e.target.value.toLowerCase().trim();
-
-                const filterCards = (cards) => {
-                    cards.forEach(card => {
-                        const name = card.querySelector(".name").textContent.toLowerCase();
-                        if (name.includes(query)) {
-                            card.classList.remove("hidden");
-                        } else {
-                            card.classList.add("hidden");
-                        }
-                    });
-                };
-
-                filterCards(leaderCards);
-                filterCards(memberCards);
-
-                updateCounts();
             });
-
-            updateCounts();
+            document.getElementById("noResults").style.display = anyVisible ? "none" : "block";
         });
     </script>
-    <style>
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #0a0a0f;
-        border-left: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #2a2a38;
-        border-radius: 4px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #4a4a6a;
-        border-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-    ::-webkit-scrollbar-thumb:active {
-        background: #ffffff;
-    }
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: #2a2a38 #0a0a0f;
-    }
-</style>
 </body>
 </html>
