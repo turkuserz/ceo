@@ -169,8 +169,8 @@
         }
 
         .section-block {
+            margin-bottom: 40px;
             transition: opacity 0.4s ease, transform 0.4s ease;
-            margin-bottom: 50px;
         }
 
         .section-title {
@@ -224,11 +224,7 @@
             box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.04);
         }
 
-        .card.hidden {
-            display: none !important;
-        }
-
-        .section-block.hidden {
+        .card.hidden, .section-block.hidden {
             display: none !important;
         }
 
@@ -350,6 +346,7 @@
             animation: fadeIn 0.4s ease-out;
         }
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -366,9 +363,6 @@
             background: #4a4a6a;
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-        ::-webkit-scrollbar-thumb:active {
-            background: #ffffff;
         }
 
         @keyframes fadeInDown {
@@ -413,6 +407,7 @@
 
         <div id="noResults" class="no-results">No members found matching your search.</div>
 
+        <!-- LEADERS SECTION -->
         <div class="section-block" id="leadersSection">
             <div class="section-title">LEADERS <span id="leadersCount"></span></div>
             <div class="grid">
@@ -440,6 +435,7 @@
             </div>
         </div>
 
+        <!-- MEMBERS SECTION -->
         <div class="section-block" id="membersSection">
             <div class="section-title">MEMBERS <span id="membersCount"></span></div>
             <div class="grid">
