@@ -14,7 +14,7 @@
   }
 
   function getMuted(){
-    return localStorage.getItem('bastienMusicMuted') === '1';
+    return 
   }
   function setMuted(v){
     localStorage.setItem('bastienMusicMuted',v?'1':'0');
@@ -58,7 +58,9 @@
     try{
       if(getMuted()) player.mute();
       else {player.unMute();player.setVolume(50);}
-      player.playVideo();
+      player.mute();
+      player.seekTo(0, true);
+      setTimeout(() => { player.mute(); player.seekTo(0, true); player.playVideo(); }, 1000);
     }catch(_){}
   };
   ['pointerdown','keydown','touchstart'].forEach(ev=>window.addEventListener(ev,unlock,{once:true,passive:true}));

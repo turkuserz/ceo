@@ -8,6 +8,7 @@
 
   let player = null;
   let ready = false;
+  let playTimer = null;
 
   const dock = document.createElement('div');
   dock.id = 'bastienMusicDock';
@@ -18,6 +19,7 @@
       <div class="music-sub">${ARTIST}</div>
     </div>
     <button id="bastienMusicToggle" type="button" aria-label="Mute or unmute">UNMUTE</button>
+    <div class="state" id="bastienMusicState">MUTED</div>
   `;
   document.body.appendChild(dock);
 
@@ -26,10 +28,28 @@
   document.body.appendChild(frame);
 
   const btn = dock.querySelector('#bastienMusicToggle');
+  const state = dock.querySelector('#bastienMusicState');
 
-  const updateButton = (muted) => {
+  const setMutedUI = (muted) => {
     btn.textContent = muted ? 'UNMUTE' : 'MUTE';
-    btn.setAttribute('aria-label', muted ? 'Unmute music' : 'Mute music');
+    state.textContent = muted ? 'MUTED' : 'PLAYING';
+  };
+
+  const startFreshMuted = (ytPlayer) => {
+    try {
+      ytPlayer.mute();
+      ytPlayer.setVolume(55);
+      ytPlayer.seekTo(0, true);
+      setMutedUI(true);
+      clearTimeout(playTimer);
+      playTimer = setTimeout(() => {
+        try {
+          ytPlayer.mute();
+          ytPlayer.seekTo(0, true);
+          ytPlayer.playVideo();
+        } catch (_) {}
+      }, 1000);
+    } catch (_) {}
   };
 
   window.onYouTubeIframeAPIReady = function () {
@@ -41,6 +61,7 @@
       videoId: VIDEO_ID,
       playerVars: {
         autoplay: 1,
+      start: 0,
         controls: 0,
         disablekb: 1,
         fs: 0,
@@ -48,29 +69,26 @@
         playlist: VIDEO_ID,
         playsinline: 1,
         rel: 0,
-        start: 0,
-        mute: 1,
         origin: location.origin
       },
       events: {
-        onReady(event) {
+        onReady(e) {
           ready = true;
-          // Every page load always starts from 00:00 and muted.
-          event.target.seekTo(0, true);
-          event.target.setVolume(55);
-          event.target.mute();
-          updateButton(true);
-          try { event.target.playVideo(); } catch (_) {}
+          startFreshMuted(e.target);
         },
-        onStateChange(event) {
-          if (event.data === YT.PlayerState.ENDED) {
+        onStateChange(e) {
+          if (e.data === YT.PlayerState.PLAYING) {
+            setMutedUI(e.target.isMuted());
+          }
+          if (e.data === YT.PlayerState.ENDED) {
             try {
-              event.target.seekTo(0, true);
-              event.target.mute();
-              updateButton(true);
-              event.target.playVideo();
+              e.target.seekTo(0, true);
+              e.target.playVideo();
             } catch (_) {}
           }
+        },
+        onError() {
+          state.textContent = 'UNAVAILABLE';
         }
       }
     });
@@ -85,11 +103,11 @@
       if (player.isMuted()) {
         player.unMute();
         player.setVolume(55);
+        setMutedUI(false);
         player.playVideo();
-        updateButton(false);
       } else {
         player.mute();
-        updateButton(true);
+        setMutedUI(true);
       }
     } catch (_) {}
   });
