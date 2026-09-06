@@ -7,6 +7,25 @@
 
   root.classList.add('page-ready');
 
+  // Warm the next local document while the user is hovering a navigation link.
+  const prefetched = new Set();
+  const warm = (url) => {
+    if (prefetched.has(url) || url.startsWith('#')) return;
+    prefetched.add(url);
+    fetch(url, { credentials: 'same-origin', cache: 'force-cache' }).catch(() => {});
+  };
+
+  document.addEventListener('pointerover', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+    const raw = link.getAttribute('href');
+    if (!raw) return;
+    try {
+      const url = new URL(raw, location.href);
+      if (url.origin === location.origin) warm(url.href);
+    } catch {}
+  }, { passive: true });
+
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[href]');
     if (!link || navigating) return;
@@ -18,20 +37,20 @@
     if (!raw || raw.startsWith('#') || raw.startsWith('javascript:')) return;
 
     let url;
-    try { url = new URL(raw, window.location.href); } catch { return; }
-    if (url.origin !== window.location.origin) return;
-    if (url.href === window.location.href) return;
+    try { url = new URL(raw, location.href); } catch { return; }
+    if (url.origin !== location.origin || url.href === location.href) return;
 
     event.preventDefault();
     navigating = true;
 
     if (reduceMotion) {
-      window.location.assign(url.href);
+      location.assign(url.href);
       return;
     }
 
+    root.classList.remove('page-ready');
     root.classList.add('page-leaving');
-    window.setTimeout(() => window.location.assign(url.href), 110);
+    window.setTimeout(() => location.assign(url.href), 90);
   }, { passive: false });
 
   window.addEventListener('pageshow', () => {

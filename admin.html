@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./css/premium.css">
 <link rel="stylesheet" href="./css/smooth.css">
 <link rel="stylesheet" href="./css/global.css">
+<link rel="stylesheet" href="./css/final-polish.css">
 <style>
 :root{--line:rgba(255,255,255,.13);--line2:rgba(255,255,255,.22);--glass:rgba(7,7,7,.66);--muted:#777;--soft:#aaa}
 *{box-sizing:border-box}
@@ -72,7 +73,7 @@ body{overflow-y:scroll!important}
 <header class="hero"><div class="eyebrow">BASTIEN MANAGEMENT</div><div class="title">ADMIN</div><div class="sub">MEMBER CONTROL CENTER</div></header>
 <section class="toolbar"><div class="toolbar-left"><span class="status-dot"></span><div><div class="toolbar-title">MEMBER MANAGEMENT</div><div class="toolbar-copy">ADD · EDIT · CHANGE ROLE · UPDATE PROFILE · DELETE</div></div></div><div class="toolbar-right"><div class="notice" id="accountNotice">KEYAUTH • SECURE ACCESS</div><button class="logout" id="logout" type="button">LOGOUT</button></div></section>
 <section class="quick-guide" aria-label="Quick guide"><div class="guide"><div class="guide-num">01 / ADD</div><strong>เพิ่มสมาชิก</strong><span>กรอกชื่อ เลือกยศ ใส่ลิงก์ และรูป แล้วกด ADD</span></div><div class="guide"><div class="guide-num">02 / EDIT</div><strong>แก้ข้อมูล</strong><span>กด EDIT ที่สมาชิกคนนั้น เพื่อเปลี่ยนชื่อ ยศ ลิงก์ หรือรูป</span></div><div class="guide"><div class="guide-num">03 / DELETE</div><strong>ลบสมาชิก</strong><span>กด DELETE เมื่อต้องการนำสมาชิกออกจากกลุ่ม</span></div></section>
-<div class="dashboard"><div><div class="section-label">GROUPS & MEMBERS</div><div class="section-help">จัดการสมาชิกแยกตามกลุ่มจากหน้านี้ได้ทันที</div></div><div class="stats"><div class="stat"><b id="totalMembers">0</b><span>TOTAL</span></div><div class="stat"><b id="totalLeaders">0</b><span>LEADERS</span></div><div class="stat"><b id="totalGroups">0</b><span>GROUPS</span></div></div></div>
+<div class="dashboard"><div><div class="section-label">GROUPS & MEMBERS</div><div class="section-help">จัดการสมาชิกแยกตามกลุ่มจากหน้านี้ได้ทันที</div><div class="admin-scroll-hint">SCROLL TO VIEW ALL GROUPS</div></div><div class="stats"><div class="stat"><b id="totalMembers">0</b><span>TOTAL</span></div><div class="stat"><b id="totalLeaders">0</b><span>LEADERS</span></div><div class="stat"><b id="totalGroups">0</b><span>GROUPS</span></div></div></div>
 <section class="groups" id="groups"></section>
 <div class="state" id="state">LOADING DATABASE...</div>
 <div class="danger-zone"><button class="action" id="clearAll" type="button">CLEAR ALL MEMBERS</button></div>
