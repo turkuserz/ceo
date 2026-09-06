@@ -15,7 +15,7 @@
 
   const dock=document.createElement('div');
   dock.id='bastienMusicDock';
-  dock.innerHTML=`<div class="cover" style="background-image:url('${COVER}')"></div><div class="meta"><div class="music-title">${TITLE}</div><div class="music-sub">${ARTIST}</div></div><button id="bastienMusicToggle" aria-label="Mute or unmute">MUTE</button><div class="state" id="bastienMusicState">AUTO PLAY</div>`;
+  dock.innerHTML=`<div class="cover" style="background-image:url('${COVER}')"></div><div class="meta"><div class="music-title">${TITLE}</div><div class="music-sub">${ARTIST}</div></div><button id="bastienMusicToggle" type="button" aria-label="Mute or unmute">MUTE</button><div class="state" id="bastienMusicState">AUTO PLAY</div>`;
   document.body.appendChild(dock);
   const frame=document.createElement('div'); frame.id='bastienMusicFrame'; document.body.appendChild(frame);
   const btn=dock.querySelector('#bastienMusicToggle'), state=dock.querySelector('#bastienMusicState');

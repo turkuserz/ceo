@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BASTIEN • MEMBERS</title>
+<title>BASTIEN</title>
 <link rel="icon" type="image/png" href="./assets/logobastien.png">
 <link rel="stylesheet" href="./css/style.css">
 <style>
@@ -87,9 +87,9 @@ body{will-change:auto;backface-visibility:hidden}
 <div class="roster-bg"></div><div class="roster-shade"></div>
 <main class="roster-wrap">
   <nav class="nav">
-  <a href="./index.html">⌂ HOME</a>
-  <a href="./members.html">♙ MEMBERS</a>
-  <a href="./login.html">♙ ADMIN</a>
+  <a href="/">HOME</a>
+  <a href="/members">MEMBERS</a>
+  <a href="/login">ADMIN</a>
 </nav>
   <header class="head" page-stagger>
     <div class="eyebrow">♙ MEMBER DIRECTORY</div>
@@ -125,6 +125,7 @@ body{will-change:auto;backface-visibility:hidden}
 
 <script type="module">
 import { watchMembers } from './js/firebase-members.js';
+import { groupProfile } from './js/group-assets.js';
 import { GROUPS } from './js/firebase-config.js';
 
 const search=document.getElementById('search');
@@ -141,7 +142,7 @@ function safeUrl(v){try{const u=new URL(String(v));return ['http:','https:'].inc
 function isLeader(person){return String(person.role||'MEMBER').trim().toUpperCase()==='LEADER';}
 function card(person,index){
   const d=document.createElement('div'); d.className='card'; d.style.animationDelay=(index*45)+'ms';
-  const photo=person.photo||'./assets/logobastien.png'; const fb=safeUrl(person.facebook||'');
+  const photo=person.photo||groupProfile(activeGroup); const fb=safeUrl(person.facebook||'');
   d.innerHTML='<div class="rank-mark">'+(isLeader(person)?'♕':'')+'</div><div class="avatar"><img src="'+safeText(photo)+'" alt=""><span class="online"></span></div><div class="info"><div class="name">'+safeText(person.name)+'</div><span class="role">'+safeText((person.role||'MEMBER').toUpperCase())+'</span></div>'+(fb?'<a class="social" href="'+safeText(fb)+'" target="_blank" rel="noopener" title="Facebook">f</a>':'<div class="social">f</div>');
   return d;
 }

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BASTIEN</title>
+  <script>
+    (function () {
+      const routes = {
+        '/members': '/members.html',
+        '/login': '/login.html',
+        '/admin': '/admin.html'
+      };
+      const target = routes[window.location.pathname];
+      if (!target) return;
+
+      fetch(target, { credentials: 'same-origin' })
+        .then((response) => {
+          if (!response.ok) throw new Error('Route not found');
+          return response.text();
+        })
+        .then((html) => {
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .catch(() => {
+          window.location.replace('/');
+        });
+    })();
+  </script>
+</head>
+<body></body>
+</html>

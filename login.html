@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BASTIEN • LOGIN</title>
+<title>BASTIEN</title>
 <link rel="icon" href="./assets/logobastien.png">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/style.css"><link rel="stylesheet" href="./css/premium.css"><link rel="stylesheet" href="./css/smooth.css">
@@ -34,15 +34,15 @@ body{min-height:100vh;overflow:hidden}.bg{position:fixed;inset:0;background:url(
 <div class="field"><label class="label" for="password">PASSWORD</label><input class="input" id="password" type="password" autocomplete="current-password" placeholder="ENTER PASSWORD" required></div>
 <button class="btn" id="loginBtn" type="submit">LOGIN</button><div class="status" id="status"></div><div style="margin-top:8px;color:#444;font:6px Orbitron;letter-spacing:1px">HWID MODE: BROWSER DEVICE ID</div>
 </form>
-<a class="back" href="./index.html">← BACK TO HOME</a>
+<a class="back" href="/">← BACK TO HOME</a>
 </div></main><div class="footer">© 2026 BASTIEN X EVELYN • FEARLESS IS KING</div>
 <script type="module">
 import { loginWithKeyAuth, checkKeyAuthSession } from "./js/keyauth-login.js";
 const form=document.getElementById("loginForm"),u=document.getElementById("username"),p=document.getElementById("password"),b=document.getElementById("loginBtn"),s=document.getElementById("status");
-(async()=>{try{if(await checkKeyAuthSession()) location.replace("./admin.html")}catch{}})();
+(async()=>{try{if(await checkKeyAuthSession()) location.replace("/admin")}catch{}})();
 form.addEventListener("submit",async e=>{
  e.preventDefault(); b.disabled=true; s.className="status"; s.textContent="AUTHENTICATING...";
- try{await loginWithKeyAuth(u.value.trim(),p.value);s.className="status ok";s.textContent="ACCESS GRANTED";setTimeout(()=>location.replace("./admin.html"),250)}
+ try{await loginWithKeyAuth(u.value.trim(),p.value);s.className="status ok";s.textContent="ACCESS GRANTED";setTimeout(()=>location.replace("/admin"),250)}
  catch(err){console.error("BASTIEN KeyAuth login:",err);s.className="status bad";s.textContent=err?.message||"LOGIN FAILED";b.disabled=false;p.focus();p.select()}
 });
 </script>
