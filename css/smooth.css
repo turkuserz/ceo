@@ -27,7 +27,7 @@ html.page-ready{
 html.page-leaving{
   opacity:0;
   transform:translate3d(0,-4px,0);
-  transition:opacity .20s ease,transform .20s var(--ease-slick);
+  transition:opacity .16s ease,transform .16s var(--ease-slick);
 }
 
 /* Prevent accidental horizontal wobble. */
@@ -179,3 +179,10 @@ a,button{
     scroll-behavior:auto!important;
   }
 }
+
+
+@view-transition { navigation: auto; }
+::view-transition-old(root){animation:pageOut .14s ease both}
+::view-transition-new(root){animation:pageIn .18s var(--ease-slick) both}
+@keyframes pageOut{to{opacity:0;transform:translateY(-3px)}}
+@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
