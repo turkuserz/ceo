@@ -7,19 +7,21 @@
   'use strict';
   const VIDEO_ID='dTS_aNfpbIM';
   const COVER='https://i.ytimg.com/vi/dTS_aNfpbIM/hqdefault.jpg';
+  const TITLE='Chest Pain (I Love)';
+  const ARTIST='Malcolm Todd';
   const KEY_TIME='bastienMusicTime';
   const KEY_MUTED='bastienMusicMuted';
   let player=null, ready=false, lastSave=0;
 
   const dock=document.createElement('div');
   dock.id='bastienMusicDock';
-  dock.innerHTML=`<div class="cover" style="background-image:url('${COVER}')"></div><div class="meta"><div class="music-title">ORIGINAL TRACK</div><div class="music-sub">BASTIEN • MUSIC</div></div><button id="bastienMusicToggle" aria-label="Mute or unmute">🔊</button><div class="state" id="bastienMusicState">AUTO PLAY</div>`;
+  dock.innerHTML=`<div class="cover" style="background-image:url('${COVER}')"></div><div class="meta"><div class="music-title">${TITLE}</div><div class="music-sub">${ARTIST}</div></div><button id="bastienMusicToggle" aria-label="Mute or unmute">MUTE</button><div class="state" id="bastienMusicState">AUTO PLAY</div>`;
   document.body.appendChild(dock);
   const frame=document.createElement('div'); frame.id='bastienMusicFrame'; document.body.appendChild(frame);
   const btn=dock.querySelector('#bastienMusicToggle'), state=dock.querySelector('#bastienMusicState');
 
   function muted(){return localStorage.getItem(KEY_MUTED)==='1'}
-  function setMuted(v){localStorage.setItem(KEY_MUTED,v?'1':'0');btn.textContent=v?'🔇':'🔊';state.textContent=v?'MUTED':'PLAYING'}
+  function setMuted(v){localStorage.setItem(KEY_MUTED,v?'1':'0');btn.textContent=v?'UNMUTE':'MUTE';state.textContent=v?'MUTED':'PLAYING'}
   function resumeTime(){const n=parseFloat(localStorage.getItem(KEY_TIME)||'0');return Number.isFinite(n)&&n>2?n:0}
   function saveTime(){if(!player||!ready)return;try{localStorage.setItem(KEY_TIME,String(player.getCurrentTime()))}catch(_){} }
 

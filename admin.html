@@ -2,34 +2,40 @@
 <html lang="th">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BASTIEN • ADMIN</title>
+<title>BASTIEN</title>
 <link rel="icon" type="image/png" href="./assets/logobastien.png">
 <link rel="stylesheet" href="./css/style.css"><link rel="stylesheet" href="./css/premium.css"><link rel="stylesheet" href="./css/smooth.css">
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#000;color:#fff;font-family:Inter,Arial,sans-serif}.page{width:min(1000px,100%);min-height:100vh;margin:auto;padding:22px 20px 70px}.nav{width:max-content;margin:0 auto 38px;padding:5px;border:1px solid rgba(255,255,255,.13);border-radius:30px;background:rgba(5,5,5,.62);backdrop-filter:blur(18px);display:flex;gap:3px}.nav a{height:36px;padding:0 19px;border-radius:22px;display:flex;align-items:center;color:#707070;text-decoration:none;font:600 9px Orbitron;letter-spacing:2px;transition:.3s}.nav a.active,.nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
 .head{text-align:center}.eyebrow{font:8px Orbitron;letter-spacing:4px;color:#777}.title{margin-top:11px;font:800 clamp(32px,6vw,52px) Orbitron;letter-spacing:8px}.sub{margin-top:9px;font:9px Orbitron;letter-spacing:4px;color:#555}.topbar{display:flex;justify-content:center;align-items:center;gap:8px;margin:20px 0 16px;flex-wrap:wrap}.notice{padding:10px 14px;border:1px solid rgba(255,255,255,.10);border-radius:9px;background:rgba(0,0,0,.35);color:#666;text-align:center;font:7px Orbitron;letter-spacing:1.2px}.logout{height:34px;padding:0 13px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.035);color:#777;cursor:pointer;font:7px Orbitron;letter-spacing:1px;transition:.2s}.logout:hover{color:#fff;border-color:rgba(255,255,255,.25)}
 .groups{display:grid;grid-template-columns:1fr 1fr;gap:13px}.group{padding:18px;border:1px solid rgba(255,255,255,.13);border-radius:13px;background:rgba(8,8,8,.50);backdrop-filter:blur(16px);box-shadow:0 18px 50px rgba(0,0,0,.25);transition:.35s}.group:hover{border-color:rgba(255,255,255,.24);transform:translateY(-2px)}.group-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.group-name{font:700 11px Orbitron;letter-spacing:2px}.group-count{font:8px Orbitron;color:#555}.add{display:grid;grid-template-columns:1.05fr 1fr 110px auto auto;gap:7px}.add input{min-width:0;width:100%;height:37px;padding:0 11px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(0,0,0,.45);color:#fff;outline:none;font:8px Inter}.add input:focus,.add select:focus{border-color:rgba(255,255,255,.3)}.member-role-input{height:37px;width:100%;padding:0 9px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(0,0,0,.45);color:#aaa;outline:none;font:8px Orbitron;letter-spacing:1px}.member-role-input option{background:#111;color:#fff}.photo-btn{height:37px;padding:0 11px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.035);color:#777;display:flex;align-items:center;justify-content:center;cursor:pointer;font:7px Orbitron;transition:.25s}.photo-btn:hover{color:#fff;border-color:rgba(255,255,255,.25)}.photo-btn input{display:none}.add button{height:37px;padding:0 13px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font:700 8px Orbitron;transition:.25s}.add button:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}.add button:disabled{opacity:.4;cursor:wait}.list{margin-top:12px;display:flex;flex-direction:column;gap:6px}.person{display:flex;align-items:center;gap:9px;min-height:39px;padding:7px 9px;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:rgba(255,255,255,.025)}.person-avatar{width:28px;height:28px;flex:none;border-radius:7px;object-fit:cover;border:1px solid rgba(255,255,255,.14);background:#080808}.person-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;font-weight:600}.person-role{font:7px Orbitron;color:#555;letter-spacing:1px}.mini-link,.remove{width:25px;height:25px;border:1px solid rgba(255,255,255,.08);border-radius:6px;background:transparent;color:#555;cursor:pointer;transition:.2s;text-decoration:none;display:grid;place-items:center;font-size:10px}.mini-link:hover,.remove:hover{color:#fff;border-color:rgba(255,255,255,.25)}.empty{padding:12px 4px;text-align:center;color:#444;font:7px Orbitron;letter-spacing:2px}.actions{display:flex;justify-content:center;gap:8px;margin-top:20px}.action{height:37px;padding:0 17px;border:1px solid rgba(255,255,255,.13);border-radius:8px;background:rgba(0,0,0,.4);color:#777;font:8px Orbitron;cursor:pointer;transition:.25s}.action:hover{color:#fff;border-color:rgba(255,255,255,.28)}.action:disabled{opacity:.4;cursor:wait}.state{min-height:17px;text-align:center;color:#555;font:7px Orbitron;letter-spacing:1.5px;margin-top:10px}.denied{display:none;min-height:55vh;place-items:center;text-align:center}.denied.show{display:grid}.denied-box{padding:28px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(0,0,0,.5)}.denied-title{font:800 18px Orbitron;letter-spacing:3px}.denied-sub{margin-top:10px;color:#555;font:7px Orbitron;letter-spacing:1px}
+
+.edit{width:58px!important}.modal{position:fixed;inset:0;z-index:10000;display:none;place-items:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px)}.modal.show{display:grid}.modal-box{width:min(500px,100%);padding:22px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(8,8,8,.94);box-shadow:0 25px 90px rgba(0,0,0,.65)}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.modal-title{font:800 13px Orbitron;letter-spacing:2px}.modal-close{width:30px;height:30px;border:1px solid rgba(255,255,255,.12);border-radius:7px;background:transparent;color:#777;cursor:pointer;font:12px Orbitron}.modal-close:hover{color:#fff}.edit-grid{display:grid;gap:9px}.edit-grid input,.edit-grid select{height:40px;width:100%;padding:0 11px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(0,0,0,.5);color:#fff;outline:none;font:8px Inter}.edit-grid select{font-family:Orbitron;color:#aaa}.edit-grid input:focus,.edit-grid select:focus{border-color:rgba(255,255,255,.3)}.edit-photo{display:flex;align-items:center;gap:10px;padding:10px;border:1px dashed rgba(255,255,255,.12);border-radius:8px;color:#666;font:7px Orbitron;letter-spacing:1px}.edit-photo input{display:none}.edit-preview{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,.13);background:#080808}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.modal-actions button{height:36px;padding:0 15px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(255,255,255,.04);color:#777;cursor:pointer;font:8px Orbitron}.modal-actions .save{color:#fff;background:rgba(255,255,255,.08)}.modal-actions button:hover{border-color:rgba(255,255,255,.28);color:#fff}
 @media(max-width:700px){.groups{grid-template-columns:1fr}.add{grid-template-columns:1fr 1fr}.member-role-input{width:100%}.add button,.photo-btn{width:100%}.page{padding:16px 12px 55px}.nav a{padding:0 12px;font-size:8px}.group{padding:15px}}
 </style>
 <link rel="stylesheet" href="./css/global.css">
 </head>
 <body>
+<div class="brand-titlebar" aria-label="BASTIEN"><a href="./index.html">BASTIEN</a><div class="brand-titlebar-line"></div></div>
+
 <main class="page" id="panel" style="display:none">
-<nav class="nav"><a href="./index.html">⌂ HOME</a><a href="./members.html">♙ MEMBERS</a><a class="active" href="./admin.html">♙ ADMIN</a></nav>
+<nav class="nav"><a href="./index.html">HOME</a><a href="./members.html">MEMBERS</a><a class="active" href="./admin.html">ADMIN</a></nav>
 <header class="head"><div class="eyebrow">CONTROL PANEL</div><div class="title">ADMIN</div><div class="sub">BASTIEN • FEARLESS</div></header>
 <div class="topbar"><div class="notice">KEYAUTH • SECURE ADMIN ACCESS</div><button class="logout" id="logout">LOGOUT</button></div>
 <section class="groups" id="groups"></section><div class="state" id="state">LOADING DATABASE...</div>
 <div class="actions"><button class="action" id="clearAll" type="button">CLEAR ALL MEMBERS</button></div>
 </main>
+<div class="modal" id="editModal" aria-hidden="true"><div class="modal-box"><div class="modal-head"><div class="modal-title">EDIT MEMBER</div><button class="modal-close" id="editClose" type="button">×</button></div><form id="editForm"><div class="edit-grid"><input id="editName" maxlength="40" placeholder="Member name..." required><input id="editFacebook" type="url" placeholder="Facebook link..."><select id="editRole"><option value="MEMBER">MEMBER</option><option value="LEADER">LEADER</option></select><label class="edit-photo"><img class="edit-preview" id="editPreview" src="./assets/logobastien.png" alt=""><span>CHANGE PROFILE PHOTO<input id="editPhoto" type="file" accept="image/png,image/jpeg,image/webp"></span></label></div><div class="modal-actions"><button type="button" id="editCancel">CANCEL</button><button class="save" type="submit" id="editSave">SAVE CHANGES</button></div></form></div></div>
 <div class="denied show" id="denied"><div class="denied-box"><div class="denied-title" id="deniedTitle">CHECKING ACCESS</div><div class="denied-sub" id="deniedSub">CONNECTING TO FIREBASE...</div></div></div>
 <script type="module">
 import { checkKeyAuthSession, logoutKeyAuth, getKeyAuthUser } from './js/keyauth-login.js';
-import { watchMembers, addMember, deleteMember, clearMembers } from './js/firebase-members.js';
+import { watchMembers, addMember, updateMember, deleteMember, clearMembers } from './js/firebase-members.js';
 import { GROUPS } from './js/firebase-config.js';
 
 const panel=document.getElementById('panel'), denied=document.getElementById('denied'), deniedTitle=document.getElementById('deniedTitle'), deniedSub=document.getElementById('deniedSub'), groupsEl=document.getElementById('groups'), state=document.getElementById('state');
 const clearBtn=document.getElementById('clearAll'); const logoutBtn=document.getElementById('logout');
-let data={}; let ready=false;
+const editModal=document.getElementById('editModal'), editForm=document.getElementById('editForm'), editClose=document.getElementById('editClose'), editCancel=document.getElementById('editCancel'), editName=document.getElementById('editName'), editFacebook=document.getElementById('editFacebook'), editRole=document.getElementById('editRole'), editPhoto=document.getElementById('editPhoto'), editPreview=document.getElementById('editPreview'), editSave=document.getElementById('editSave');
+let data={}; let ready=false; let editing={group:null,id:null,photo:''};
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 (async()=>{
@@ -69,8 +75,9 @@ function render(){
     if(!list.length) listEl.innerHTML='<div class="empty">NO MEMBERS YET</div>';
     list.forEach(person=>{
       const row=document.createElement('div');row.className='person';
-      row.innerHTML=`<img class="person-avatar" src="${person.photo||'./assets/logobastien.png'}" alt=""><div class="person-name">${esc(person.name)}</div><div class="person-role">${esc(person.role||'MEMBER')}</div>${person.facebook?`<a class="mini-link" target="_blank" rel="noopener" href="${esc(person.facebook)}">f</a>`:''}<button class="remove" type="button">×</button>`;
-      row.querySelector('.remove').onclick=async()=>{try{state.textContent='SAVING...';await deleteMember(group,person.id);state.textContent='LIVE • DATABASE CONNECTED';}catch(e){state.textContent='SAVE ERROR: '+e.message;}};
+      row.innerHTML=`<img class="person-avatar" src="${person.photo||'./assets/logobastien.png'}" alt=""><div class="person-name">${esc(person.name)}</div><div class="person-role">${esc(person.role||'MEMBER')}</div>${person.facebook?`<a class="mini-link" target="_blank" rel="noopener" href="${esc(person.facebook)}">f</a>`:''}<button class="mini-link edit" type="button">EDIT</button><button class="remove" type="button">×</button>`;
+      row.querySelector('.edit').onclick=()=>openEdit(group,person);
+      row.querySelector('.remove').onclick=async()=>{if(!confirm(`ลบ ${person.name} ใช่ไหม?`))return;try{state.textContent='SAVING...';await deleteMember(group,person.id);state.textContent='LIVE • DATABASE CONNECTED';}catch(e){state.textContent='SAVE ERROR: '+e.message;}};
       listEl.appendChild(row);
     });
     box.querySelector('form').onsubmit=async e=>{
@@ -82,6 +89,23 @@ function render(){
     groupsEl.appendChild(box);
   });
 }
+
+function openEdit(group, person){
+  editing={group,id:person.id,photo:person.photo||''};
+  editName.value=person.name||''; editFacebook.value=person.facebook||''; editRole.value=person.role||'MEMBER'; editPreview.src=person.photo||'./assets/logobastien.png'; editPhoto.value=''; editModal.classList.add('show'); editModal.setAttribute('aria-hidden','false'); editName.focus();
+}
+function closeEdit(){editModal.classList.remove('show');editModal.setAttribute('aria-hidden','true');editing={group:null,id:null,photo:''};}
+editClose.onclick=closeEdit; editCancel.onclick=closeEdit; editModal.addEventListener('click',e=>{if(e.target===editModal)closeEdit();});
+editPhoto.onchange=async()=>{const file=editPhoto.files[0];if(!file)return;try{editPreview.src=await compressImage(file);}catch(e){state.textContent='PHOTO ERROR: '+e.message;editPhoto.value='';}};
+editForm.onsubmit=async e=>{
+  e.preventDefault(); if(!editing.group||!editing.id)return;
+  const name=editName.value.trim(), facebook=editFacebook.value.trim(), role=editRole.value; if(!name)return;
+  const groupList=Array.isArray(data[editing.group])?data[editing.group]:[];
+  if(groupList.some(x=>x.id!==editing.id&&String(x.name).toLowerCase()===name.toLowerCase())){state.textContent='ชื่อนี้มีอยู่แล้วในกลุ่ม '+editing.group;return;}
+  editSave.disabled=true; state.textContent='UPDATING MEMBER...';
+  try{const file=editPhoto.files[0]; const photo=file?await compressImage(file):editing.photo; await updateMember(editing.group,editing.id,{name,facebook,role,photo}); closeEdit(); state.textContent='UPDATED • LIVE SYNC';}
+  catch(err){state.textContent='UPDATE ERROR: '+err.message;} finally{editSave.disabled=false;}
+};
 
 clearBtn.onclick=async()=>{if(!ready||!confirm('ลบสมาชิกทั้งหมดจากทุกกลุ่มใน Firebase ใช่ไหม?'))return;clearBtn.disabled=true;state.textContent='CLEARING DATABASE...';try{await clearMembers();state.textContent='ALL MEMBERS CLEARED';}catch(e){state.textContent='CLEAR ERROR: '+e.message;}finally{clearBtn.disabled=false;}};
 logoutBtn.onclick=async()=>{await logoutKeyAuth();location.replace('./login.html');};

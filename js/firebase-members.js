@@ -30,6 +30,16 @@ export async function addMember(group, person){
   });
 }
 
+export async function updateMember(group, id, person){
+  const target = ref(db, `members/${group}/${id}`);
+  await set(target, {
+    name: String(person.name || "").trim(),
+    role: String(person.role || "MEMBER"),
+    facebook: String(person.facebook || "").trim(),
+    photo: String(person.photo || "")
+  });
+}
+
 export async function deleteMember(group, id){
   await remove(ref(db, `members/${group}/${id}`));
 }

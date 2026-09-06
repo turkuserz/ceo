@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BASTIEN • MEMBERS</title>
+<title>BASTIEN</title>
 <link rel="icon" type="image/png" href="./assets/logobastien.png">
 <link rel="stylesheet" href="./css/style.css">
 <style>
@@ -81,18 +81,34 @@ body{will-change:auto;backface-visibility:hidden}
 .section-head{margin-bottom:14px}
 .card .role{color:#888}
 @media(max-width:560px){.tools{margin-top:21px;margin-bottom:24px}.category-bar{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding:3px 1px 6px;scrollbar-width:none}.category-bar::-webkit-scrollbar{display:none}.filter{flex:0 0 auto;min-width:auto}.search{height:41px!important}.section{margin-top:21px}}
+
+/* 5-second readability pass */
+.roster-wrap{padding-top:72px!important}
+.head .eyebrow{font-size:8px!important;color:#aaa!important;letter-spacing:3px!important}
+.head .title{font-size:clamp(34px,5vw,54px)!important;letter-spacing:7px!important}
+.head .sub{color:#777!important}
+.tools{display:flex!important;flex-direction:column!important;align-items:stretch!important;max-width:820px!important;margin:30px auto 28px!important}
+.search-wrap{position:relative;width:100%}
+.search{width:100%!important;height:46px!important;padding-left:42px!important;font-size:9px!important;background:rgba(3,3,3,.70)!important}
+.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);z-index:2;color:#777;font-size:15px}
+.category-bar{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.filter{height:38px!important;min-width:auto!important;padding:0 15px!important}
+.section-head{font-size:9px!important;color:#aaa!important}
+.section{margin-top:25px!important}
 </style>
 </head>
 <body>
+<div class="brand-titlebar" aria-label="BASTIEN"><a href="./index.html">BASTIEN</a><div class="brand-titlebar-line"></div></div>
+
 <div class="roster-bg"></div><div class="roster-shade"></div>
 <main class="roster-wrap">
   <nav class="nav">
-  <a href="./index.html">⌂ HOME</a>
-  <a href="./members.html">♙ MEMBERS</a>
-  <a href="./login.html">♙ ADMIN</a>
+  <a href="./index.html">HOME</a>
+  <a href="./members.html">MEMBERS</a>
+  <a href="./login.html">ADMIN</a>
 </nav>
   <header class="head" page-stagger>
-    <div class="eyebrow">♙ MEMBER DIRECTORY</div>
+    <div class="eyebrow">MEMBER DIRECTORY</div>
     <div class="title">BASTIEN</div>
     <div class="sub">BET FEARLESS IS KING</div>
   </header>
@@ -112,12 +128,12 @@ body{will-change:auto;backface-visibility:hidden}
   </div>
 
   <section class="section leaders">
-    <h2 class="section-head">♕ LEADERS <span>(02)</span></h2>
+    <h2 class="section-head">LEADERS <span>(02)</span></h2>
     <div class="grid" id="leadersGrid"></div>
   </section>
 
   <section class="section" page-stagger>
-    <h2 class="section-head">♙ MEMBERS <span id="memberCount">(04)</span></h2>
+    <h2 class="section-head">MEMBERS <span id="memberCount">(04)</span></h2>
     <div class="grid" id="membersGrid"></div>
     <div class="empty" id="empty">NO MEMBERS FOUND</div>
   </section>
