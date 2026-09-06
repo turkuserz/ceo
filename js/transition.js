@@ -7,7 +7,6 @@
 
   root.classList.add('page-ready');
 
-  // Warm the next local document while the user is hovering a navigation link.
   const prefetched = new Set();
   const warm = (url) => {
     if (prefetched.has(url) || url.startsWith('#')) return;

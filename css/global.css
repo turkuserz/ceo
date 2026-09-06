@@ -1,8 +1,3 @@
-/* =========================================================
-   BASTIEN GLOBAL FOUNDATION
-   Shared background, glass surfaces and media dock.
-   ========================================================= */
-
 html{
   scroll-behavior:smooth;
   background:#050505;
@@ -27,8 +22,6 @@ body{
   text-rendering:optimizeLegibility;
 }
 
-/* Existing background layers are disabled so the same image
-   is always visible consistently on every page. */
 .home-bg,
 .home-shade,
 .roster-bg,
@@ -53,10 +46,6 @@ input:focus-visible,
 select:focus-visible{
   outline:1px solid rgba(255,255,255,.38);
 }
-
-/* =========================================================
-   SHARED MUSIC DOCK
-   ========================================================= */
 
 #bastienMusicDock{
   position:fixed;
@@ -197,12 +186,10 @@ select:focus-visible{
 }
 
 
-/* LATEST BASTIEN BACKGROUND + SCROLL BEHAVIOR */
 body{background-image:linear-gradient(180deg,rgba(0,0,0,.46),rgba(0,0,0,.80)),url("../assets/Bastienstyle.png") !important;background-position:center center !important;background-size:cover !important;background-repeat:no-repeat !important;background-attachment:fixed !important}
 .nav{z-index:20}
 
 
-/* SHARED NAVIGATION */
 .nav{position:relative;width:max-content;margin:0 auto 34px;padding:5px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(5,5,5,.70);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.35);display:flex;gap:3px;z-index:20}
 .nav a{height:37px;padding:0 18px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:7px;color:#6f6f6f;text-decoration:none;font:700 8px Orbitron,Arial,sans-serif;letter-spacing:1.8px;transition:color .22s ease,background-color .22s ease,border-color .22s ease,transform .22s ease}
 .nav a:hover,.nav a.active{color:#fff;background:rgba(255,255,255,.085);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
@@ -211,15 +198,10 @@ body{background-image:linear-gradient(180deg,rgba(0,0,0,.46),rgba(0,0,0,.80)),ur
 .nav a span{display:inline-block}
 @media(max-width:600px){.nav{max-width:calc(100vw - 24px);margin-bottom:26px}.nav a{height:34px;padding:0 11px;font-size:7px;letter-spacing:1.2px}.nav .nav-icon{width:11px;height:11px}}
 
-/* HOME NAV POSITION */
 .home-nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);margin:0;white-space:nowrap}
 @media(max-width:520px){.home-nav{top:12px}}
 
 
-/* =========================================================
-   FINAL POLISH — BASTIEN 2026
-   Subtle motion, readable hierarchy, lightweight effects.
-   ========================================================= */
 html{scroll-behavior:smooth;overflow-y:scroll;overscroll-behavior-y:auto}
 body{min-height:100vh;overflow-x:hidden;overflow-y:auto!important;background-color:#050505!important;background-image:
   linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.80)),
@@ -231,40 +213,32 @@ body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;ba
   linear-gradient(180deg,transparent 58%,rgba(0,0,0,.18) 100%);opacity:.9}
 body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 76% 78%,rgba(210,20,20,.055),transparent 22%);mix-blend-mode:screen}
 
-/* One restrained glass language across the site. */
 .nav,.toolbar,.guide,.group,.card,.member-box,.filter,.search,.denied-box,#bastienMusicDock{
   box-shadow:0 18px 55px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.025)
 }
 
-/* Navigation: [icon] HOME / [icon] MEMBER / [icon] ADMIN */
 .nav a{min-width:92px}
 .nav .nav-icon{width:12px;height:12px;flex:0 0 12px}
 
-/* Faster, softer interaction without excessive movement. */
 a,button{cursor:pointer}
 button:active,.nav a:active,.filter:active,.member-box:active{transform:translate3d(0,1px,0)!important}
 
-/* Keep the admin page naturally scrollable even with many members. */
 .page{min-height:100vh;height:auto!important;overflow:visible!important}
 .groups{align-items:start}
 .group{height:max-content}
 
-/* Subtle red reflection matching the car tail-light in the background. */
 .group::after,.card::after,.member-box::after{content:"";position:absolute;right:-80px;bottom:-90px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(180,0,0,.07),transparent 68%);pointer-events:none}
 
-/* Respect accessibility settings. */
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
 
-/* Small screens: nav remains obvious and easy to tap. */
 @media(max-width:600px){
   .nav{max-width:calc(100vw - 20px);width:max-content}
   .nav a{min-width:0;padding-inline:12px}
 }
 
-/* HOME: fixed one-screen layout — no page scrolling */
 body.home-page{
   height:100dvh;
   min-height:100dvh;
@@ -277,7 +251,6 @@ body.home-page .site-wrapper{
   overflow:hidden;
 }
 
-/* Music dock stays in its original bottom-right position */
 #bastienMusicDock{
   position:fixed !important;
   right:20px !important;

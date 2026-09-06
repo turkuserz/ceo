@@ -2,8 +2,6 @@ import { KEYAUTH } from "./keyauth-config.js";
 
 let sessionid = null;
 
-// Browser-only device ID.
-// This is NOT a real Windows hardware ID. It is a stable ID for this browser profile.
 const DEVICE_KEY = "bastien_keyauth_device_id";
 
 function getBrowserDeviceId() {

@@ -1,5 +1,4 @@
 
-/* ================= BASTIEN PREMIUM UI ================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap');
 
 :root{
@@ -30,14 +29,12 @@ body{
   font-family:Orbitron,Inter,Arial,sans-serif!important;
 }
 
-/* Smooth page reveal */
 body{animation:bastienPageIn .9s var(--b-ease) both}
 @keyframes bastienPageIn{
   from{opacity:0;filter:blur(5px)}
   to{opacity:1;filter:blur(0)}
 }
 
-/* Premium glass surfaces */
 .nav,.member-box,.card,.panel,.search,.filter,.supervised-item,.social-btn,.music-player,.top-header-container{
   border-color:var(--b-line)!important;
   box-shadow:0 18px 55px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.045);
@@ -48,11 +45,9 @@ body{animation:bastienPageIn .9s var(--b-ease) both}
   background:linear-gradient(135deg,rgba(25,25,27,.48),rgba(2,2,3,.40))!important;
 }
 
-/* Better hierarchy */
 .member-name,.name{font-weight:700!important;letter-spacing:.05em}
 .member-role,.role{letter-spacing:.16em!important;color:rgba(255,255,255,.46)!important}
 
-/* Refined hover */
 .member-box,.card,.nav a,.filter,.supervised-item,.social-btn,.mini-toggle-btn,.back{
   transition:
     transform .35s var(--b-ease),
@@ -68,7 +63,6 @@ body{animation:bastienPageIn .9s var(--b-ease) both}
 }
 .member-box:active,.card:active{transform:translateY(-2px) scale(.995)!important}
 
-/* Subtle light sweep on cards */
 .member-box:before,.card:before{
   content:"";
   position:absolute;
@@ -80,7 +74,6 @@ body{animation:bastienPageIn .9s var(--b-ease) both}
 }
 .member-box:hover:before,.card:hover:before{transform:translateX(120%)}
 
-/* Inputs/buttons */
 .search:focus{
   border-color:rgba(255,255,255,.34)!important;
   box-shadow:0 0 0 4px rgba(255,255,255,.025),0 12px 40px rgba(0,0,0,.3)!important;
@@ -89,19 +82,16 @@ body{animation:bastienPageIn .9s var(--b-ease) both}
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),0 7px 25px rgba(0,0,0,.25)!important;
 }
 
-/* Background depth */
 body:after,.roster-shade,.shade{
   background:
     radial-gradient(circle at 50% 28%,rgba(255,255,255,.035),transparent 34%),
     linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,.78))!important;
 }
 
-/* Make logo feel integrated rather than pasted */
 .logo-crest,.hero-logo,.roster-logo{
   filter:drop-shadow(0 12px 30px rgba(0,0,0,.8)) drop-shadow(0 0 18px rgba(255,255,255,.10))!important;
 }
 
-/* Fine grain */
 body:global{isolation:isolate}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{
@@ -112,14 +102,12 @@ body:global{isolation:isolate}
   }
 }
 
-/* BASTIEN ULTRA SMOOTH */
 *{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.16) transparent}
 html{scroll-behavior:smooth}
 body{-webkit-tap-highlight-color:transparent}
 a,button,input{outline-offset:3px}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:1px solid rgba(255,255,255,.38)}
 
-/* BASTIEN PAGE TRANSITIONS */
 html{
   opacity:0;
   transition:opacity .42s cubic-bezier(.22,1,.36,1);
