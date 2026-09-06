@@ -263,3 +263,26 @@ button:active,.nav a:active,.filter:active,.member-box:active{transform:translat
   .nav{max-width:calc(100vw - 20px);width:max-content}
   .nav a{min-width:0;padding-inline:12px}
 }
+
+/* HOME: fixed one-screen layout — no page scrolling */
+body.home-page{
+  height:100dvh;
+  min-height:100dvh;
+  overflow:hidden !important;
+  overscroll-behavior:none;
+}
+body.home-page .site-wrapper{
+  min-height:100dvh;
+  height:100dvh;
+  overflow:hidden;
+}
+
+/* Music dock stays in its original bottom-right position */
+#bastienMusicDock{
+  position:fixed !important;
+  right:20px !important;
+  bottom:20px !important;
+}
+@media(max-width:700px){
+  #bastienMusicDock{right:12px !important;bottom:12px !important}
+}
