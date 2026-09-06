@@ -1,0 +1,181 @@
+
+/* =========================================================
+   BASTIEN — SLICK / STABLE MOTION ENGINE
+   Designed to avoid layout thrashing and shaky continuous motion.
+   ========================================================= */
+
+:root{
+  --ease-slick:cubic-bezier(.22,1,.36,1);
+  --ease-soft:cubic-bezier(.16,1,.3,1);
+}
+
+/* Never hide the document while JS is loading. */
+html{
+  opacity:1;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  scroll-behavior:smooth;
+}
+
+html.page-ready{
+  opacity:1;
+  transition:opacity .38s var(--ease-slick);
+}
+
+html.page-leaving{
+  opacity:0;
+  transform:translate3d(0,-4px,0);
+  transition:opacity .20s ease,transform .20s var(--ease-slick);
+}
+
+/* Prevent accidental horizontal wobble. */
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+body{
+  overscroll-behavior-y:none;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* GPU-friendly only: transform + opacity. */
+.card,
+.member-box,
+.filter,
+.nav a,
+.supervised-item,
+.social,
+.social-btn,
+.mini-toggle-btn,
+.music-player,
+.hero-logo,
+.logo-crest{
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+/* Slick hover — no layout-changing properties. */
+.card,
+.member-box,
+.filter,
+.nav a,
+.supervised-item,
+.social,
+.social-btn,
+.mini-toggle-btn{
+  transition:
+    transform .34s var(--ease-slick),
+    opacity .24s ease,
+    background-color .28s ease,
+    border-color .28s ease,
+    box-shadow .34s var(--ease-slick),
+    color .22s ease;
+}
+
+.card:hover,
+.member-box:hover{
+  transform:translate3d(0,-3px,0) scale(1.008);
+}
+
+.filter:hover,
+.nav a:hover,
+.supervised-item:hover{
+  transform:translate3d(0,-2px,0);
+}
+
+.social:hover,
+.social-btn:hover,
+.mini-toggle-btn:hover{
+  transform:translate3d(0,-2px,0) scale(1.02);
+}
+
+/* Input stays stable while focused. */
+.search,
+input,
+textarea,
+select{
+  transition:
+    border-color .25s ease,
+    background-color .25s ease,
+    box-shadow .30s ease;
+}
+
+/* Entrance: short and controlled, no blur animation. */
+.page-stagger{
+  animation:bastienEnter .55s var(--ease-slick) both;
+}
+@keyframes bastienEnter{
+  from{
+    opacity:0;
+    transform:translate3d(0,10px,0);
+  }
+  to{
+    opacity:1;
+    transform:translate3d(0,0,0);
+  }
+}
+
+/* Background: completely stable.
+   Continuous scaling was the main source of visual "wobble". */
+.home-bg,
+.roster-bg{
+  transform:translateZ(0) scale(1.035);
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+
+/* If an older rule tries to animate the background, disable it. */
+.home-bg,
+.roster-bg{
+  animation:none!important;
+  will-change:auto;
+}
+
+/* Smooth scrollbar without expensive effects. */
+*{
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.16) transparent;
+}
+::-webkit-scrollbar{width:7px;height:7px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.14);
+  border-radius:20px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:rgba(255,255,255,.24);
+}
+
+/* Avoid text/image dragging and tap flashes. */
+img{
+  -webkit-user-drag:none;
+  user-select:none;
+}
+a,button{
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Mobile: even lighter motion. */
+@media(max-width:700px){
+  .card:hover,
+  .member-box:hover{
+    transform:translate3d(0,-2px,0) scale(1.004);
+  }
+}
+
+/* Accessibility + stability. */
+@media(prefers-reduced-motion:reduce){
+  html,html.page-ready,html.page-leaving{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+  *,*:before,*:after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}

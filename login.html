@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BASTIEN • LOGIN</title>
+<link rel="icon" href="./assets/logobastien.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css"><link rel="stylesheet" href="./css/premium.css"><link rel="stylesheet" href="./css/smooth.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#000;color:#fff;font-family:Orbitron,Arial,sans-serif}
+body{min-height:100vh;overflow:hidden}.bg{position:fixed;inset:0;background:url('./assets/Bastienstyle.png') center/cover no-repeat;filter:grayscale(1) contrast(1.08);transform:scale(1.03)}
+.bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.56),rgba(0,0,0,.9)),radial-gradient(circle at 50% 42%,rgba(255,255,255,.08),transparent 45%)}
+.top{position:fixed;top:30px;left:55px;right:55px;display:flex;align-items:center;gap:18px;z-index:2}.line{height:1px;flex:1;background:rgba(255,255,255,.17)}.top span{font-size:8px;letter-spacing:4px;color:#666}
+.wrap{position:relative;z-index:2;min-height:100vh;display:grid;place-items:center;padding:65px 18px}.box{width:min(390px,100%);text-align:center}
+.logo{width:min(285px,74vw);max-height:115px;object-fit:contain;filter:drop-shadow(0 0 28px rgba(255,255,255,.22));margin-bottom:6px}
+.eyebrow{font-size:7px;letter-spacing:4px;color:#777}.title{margin:10px 0 7px;font-size:32px;font-weight:800;letter-spacing:7px}.sub{font-size:7px;letter-spacing:3px;color:#555;margin-bottom:22px}
+.card{padding:21px;border:1px solid rgba(255,255,255,.13);border-radius:12px;background:rgba(4,4,4,.66);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 25px 70px rgba(0,0,0,.48)}
+.field{text-align:left;margin-bottom:10px}.label{display:block;margin:0 0 7px 2px;font-size:7px;letter-spacing:2px;color:#666}
+.input{width:100%;height:45px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(0,0,0,.5);color:#fff;outline:0;padding:0 14px;text-align:center;font:600 9px Orbitron;letter-spacing:2px;transition:.25s}.input::placeholder{color:#444}.input:focus{border-color:rgba(255,255,255,.4);box-shadow:0 0 20px rgba(255,255,255,.05)}
+.btn{width:100%;height:45px;margin-top:4px;border:1px solid rgba(255,255,255,.19);border-radius:8px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font:800 8px Orbitron;letter-spacing:3px;transition:.25s}.btn:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.42);transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:wait;transform:none}
+.status{min-height:18px;margin-top:10px;color:#666;font-size:7px;letter-spacing:1px}.status.ok{color:#aaa}.status.bad{color:#777}
+.back{display:inline-block;margin-top:17px;color:#555;text-decoration:none;font-size:7px;letter-spacing:2px;transition:.2s}.back:hover{color:#fff}.footer{position:fixed;bottom:17px;left:0;right:0;text-align:center;color:#2f2f2f;font-size:6px;letter-spacing:2px;z-index:2}
+@media(max-width:600px){.top{left:18px;right:18px;top:19px}.top span{font-size:6px;letter-spacing:2px}.title{font-size:27px;letter-spacing:6px}}
+</style>
+<link rel="stylesheet" href="./css/global.css">
+</head>
+<body>
+<div class="bg"></div><div class="top"><div class="line"></div><span>BASTIEN • ADMIN</span><div class="line"></div></div>
+<main class="wrap"><div class="box">
+<img src="./assets/logobastien.png" class="logo" alt="BASTIEN">
+<div class="eyebrow">SECURE ACCESS</div><div class="title">LOGIN</div><div class="sub">KEYAUTH PROTECTED</div>
+<form class="card" id="loginForm">
+<div class="field"><label class="label" for="username">USERNAME</label><input class="input" id="username" autocomplete="username" placeholder="ENTER USERNAME" required></div>
+<div class="field"><label class="label" for="password">PASSWORD</label><input class="input" id="password" type="password" autocomplete="current-password" placeholder="ENTER PASSWORD" required></div>
+<button class="btn" id="loginBtn" type="submit">LOGIN</button><div class="status" id="status"></div><div style="margin-top:8px;color:#444;font:6px Orbitron;letter-spacing:1px">HWID MODE: BROWSER DEVICE ID</div>
+</form>
+<a class="back" href="./index.html">← BACK TO HOME</a>
+</div></main><div class="footer">© 2026 BASTIEN X EVELYN • FEARLESS IS KING</div>
+<script type="module">
+import { loginWithKeyAuth, checkKeyAuthSession } from "./js/keyauth-login.js";
+const form=document.getElementById("loginForm"),u=document.getElementById("username"),p=document.getElementById("password"),b=document.getElementById("loginBtn"),s=document.getElementById("status");
+(async()=>{try{if(await checkKeyAuthSession()) location.replace("./admin.html")}catch{}})();
+form.addEventListener("submit",async e=>{
+ e.preventDefault(); b.disabled=true; s.className="status"; s.textContent="AUTHENTICATING...";
+ try{await loginWithKeyAuth(u.value.trim(),p.value);s.className="status ok";s.textContent="ACCESS GRANTED";setTimeout(()=>location.replace("./admin.html"),250)}
+ catch(err){console.error("BASTIEN KeyAuth login:",err);s.className="status bad";s.textContent=err?.message||"LOGIN FAILED";b.disabled=false;p.focus();p.select()}
+});
+</script>
+<script src="./js/music.js" defer></script>
+<script src="./js/transition.js" defer></script>
+</body></html>

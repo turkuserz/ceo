@@ -1,0 +1,20 @@
+
+/* BASTIEN GLOBAL BACKGROUND + PERFORMANCE */
+html,body{background:#050505!important;max-width:100%;overflow-x:hidden}
+body{position:relative;min-height:100vh;color:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;background:url("../assets/Bastienstyle.png") center center/cover no-repeat;filter:grayscale(1) contrast(1.05);transform:translateZ(0) scale(1.03);z-index:-20;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.48),rgba(0,0,0,.78)),radial-gradient(circle at 50% 35%,rgba(255,255,255,.035),transparent 55%);z-index:-19;pointer-events:none}
+/* Existing page background layers stay stable and GPU friendly */
+.home-bg,.roster-bg{animation:none!important;will-change:auto!important;transform:translateZ(0) scale(1.035)!important}
+/* Shared music dock */
+#bastienMusicDock{position:fixed;right:20px;bottom:20px;width:310px;z-index:9999;display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid rgba(255,255,255,.14);border-radius:13px;background:rgba(7,7,7,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 16px 45px rgba(0,0,0,.45);transform:translateZ(0);transition:transform .24s cubic-bezier(.22,1,.36,1),border-color .24s ease,background-color .24s ease}
+#bastienMusicDock:hover{transform:translate3d(0,-2px,0);border-color:rgba(255,255,255,.24);background:rgba(10,10,10,.82)}
+#bastienMusicDock .cover{width:48px;height:48px;flex:none;border-radius:9px;background:center/cover no-repeat url("https://i.ytimg.com/vi/dTS_aNfpbIM/hqdefault.jpg");border:1px solid rgba(255,255,255,.13);overflow:hidden;position:relative}
+#bastienMusicDock .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 55%)}
+#bastienMusicDock .meta{min-width:0;flex:1}.music-title{font:800 9px Orbitron,Arial,sans-serif;letter-spacing:1.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-sub{margin-top:5px;color:#707070;font:7px Orbitron,Arial,sans-serif;letter-spacing:1.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bastienMusicDock button{width:35px;height:35px;flex:none;border:1px solid rgba(255,255,255,.14);border-radius:9px;background:rgba(255,255,255,.04);color:#fff;cursor:pointer;display:grid;place-items:center;font:700 10px Orbitron;transition:transform .2s ease,background-color .2s ease,border-color .2s ease}
+#bastienMusicDock button:hover{transform:scale(1.04);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.3)}
+#bastienMusicDock .state{position:absolute;left:72px;bottom:8px;color:#4e4e4e;font:6px Orbitron;letter-spacing:1px;pointer-events:none}
+#bastienMusicFrame{position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+@media(max-width:700px){#bastienMusicDock{right:12px;bottom:12px;width:270px}.cover{width:44px!important;height:44px!important}}
+@media(prefers-reduced-motion:reduce){#bastienMusicDock{transition:none}#bastienMusicDock:hover{transform:none}}

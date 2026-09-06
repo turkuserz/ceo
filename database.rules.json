@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "members": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}

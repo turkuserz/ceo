@@ -1,0 +1,150 @@
+
+/* ================= BASTIEN PREMIUM UI ================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap');
+
+:root{
+  --b-white:#fff;
+  --b-text:rgba(255,255,255,.90);
+  --b-soft:rgba(255,255,255,.58);
+  --b-muted:rgba(255,255,255,.34);
+  --b-line:rgba(255,255,255,.13);
+  --b-line-hi:rgba(255,255,255,.27);
+  --b-glass:rgba(8,8,9,.48);
+  --b-glass-hi:rgba(25,25,27,.58);
+  --b-ease:cubic-bezier(.22,1,.36,1);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif!important;
+  letter-spacing:.01em;
+  text-rendering:optimizeLegibility;
+}
+.header-title,.title,.brand-title,.roster-title{
+  font-family:Orbitron,Inter,Arial,sans-serif!important;
+  font-weight:800!important;
+  text-shadow:0 8px 32px rgba(0,0,0,.65);
+}
+.header-subtitle,.sub,.brand-sub,.eyebrow,.supervised-title,.section-head,.footer,
+.member-role,.role{
+  font-family:Orbitron,Inter,Arial,sans-serif!important;
+}
+
+/* Smooth page reveal */
+body{animation:bastienPageIn .9s var(--b-ease) both}
+@keyframes bastienPageIn{
+  from{opacity:0;filter:blur(5px)}
+  to{opacity:1;filter:blur(0)}
+}
+
+/* Premium glass surfaces */
+.nav,.member-box,.card,.panel,.search,.filter,.supervised-item,.social-btn,.music-player,.top-header-container{
+  border-color:var(--b-line)!important;
+  box-shadow:0 18px 55px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.045);
+  backdrop-filter:blur(18px) saturate(.85)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(.85)!important;
+}
+.nav,.member-box,.card,.panel,.music-player{
+  background:linear-gradient(135deg,rgba(25,25,27,.48),rgba(2,2,3,.40))!important;
+}
+
+/* Better hierarchy */
+.member-name,.name{font-weight:700!important;letter-spacing:.05em}
+.member-role,.role{letter-spacing:.16em!important;color:rgba(255,255,255,.46)!important}
+
+/* Refined hover */
+.member-box,.card,.nav a,.filter,.supervised-item,.social-btn,.mini-toggle-btn,.back{
+  transition:
+    transform .35s var(--b-ease),
+    border-color .35s ease,
+    background .35s ease,
+    box-shadow .35s ease,
+    color .25s ease!important;
+}
+.member-box:hover,.card:hover{
+  transform:translateY(-5px)!important;
+  border-color:var(--b-line-hi)!important;
+  box-shadow:0 24px 65px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.member-box:active,.card:active{transform:translateY(-2px) scale(.995)!important}
+
+/* Subtle light sweep on cards */
+.member-box:before,.card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(110deg,transparent 28%,rgba(255,255,255,.055) 50%,transparent 72%);
+  transform:translateX(-120%);
+  transition:transform .8s var(--b-ease);
+}
+.member-box:hover:before,.card:hover:before{transform:translateX(120%)}
+
+/* Inputs/buttons */
+.search:focus{
+  border-color:rgba(255,255,255,.34)!important;
+  box-shadow:0 0 0 4px rgba(255,255,255,.025),0 12px 40px rgba(0,0,0,.3)!important;
+}
+.filter.active,.nav a.active{
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),0 7px 25px rgba(0,0,0,.25)!important;
+}
+
+/* Background depth */
+body:after,.roster-shade,.shade{
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,255,255,.035),transparent 34%),
+    linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,.78))!important;
+}
+
+/* Make logo feel integrated rather than pasted */
+.logo-crest,.hero-logo,.roster-logo{
+  filter:drop-shadow(0 12px 30px rgba(0,0,0,.8)) drop-shadow(0 0 18px rgba(255,255,255,.10))!important;
+}
+
+/* Fine grain */
+body:global{isolation:isolate}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+
+/* BASTIEN ULTRA SMOOTH */
+*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.16) transparent}
+html{scroll-behavior:smooth}
+body{-webkit-tap-highlight-color:transparent}
+a,button,input{outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:1px solid rgba(255,255,255,.38)}
+
+/* BASTIEN PAGE TRANSITIONS */
+html{
+  opacity:0;
+  transition:opacity .42s cubic-bezier(.22,1,.36,1);
+}
+html.page-ready{opacity:1}
+html.page-leaving{
+  opacity:0;
+  filter:blur(3px);
+  transform:scale(.992);
+  transition:
+    opacity .26s cubic-bezier(.55,0,.1,1),
+    filter .26s cubic-bezier(.55,0,.1,1),
+    transform .26s cubic-bezier(.55,0,.1,1);
+}
+@media(prefers-reduced-motion:reduce){
+  html{opacity:1!important;transition:none!important}
+}
+
+.member-music-player{
+  position:fixed!important;
+  right:22px!important;
+  bottom:22px!important;
+  z-index:100!important;
+  transform:translateZ(0);
+}
+@media(max-width:560px){
+  .member-music-player{right:12px!important;bottom:12px!important}
+}
