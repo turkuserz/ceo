@@ -100,19 +100,3 @@ body:has(#groups){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
-
-/* Ultra-smooth page navigation */
-html.page-ready body {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition: opacity 130ms ease, transform 130ms cubic-bezier(.22,1,.36,1);
-}
-html.page-leaving body {
-  opacity: .01;
-  transform: translate3d(0, 5px, 0);
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  html.page-ready body,
-  html.page-leaving body { transition: none; transform: none; }
-}

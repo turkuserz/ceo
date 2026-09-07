@@ -4,12 +4,12 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   let navigating = false;
-  const prefetched = new Set();
 
   root.classList.add('page-ready');
 
+  const prefetched = new Set();
   const warm = (url) => {
-    if (prefetched.has(url)) return;
+    if (prefetched.has(url) || url.startsWith('#')) return;
     prefetched.add(url);
     fetch(url, { credentials: 'same-origin', cache: 'force-cache' }).catch(() => {});
   };
@@ -18,11 +18,11 @@
     const link = event.target.closest('a[href]');
     if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
     const raw = link.getAttribute('href');
-    if (!raw || raw.startsWith('#') || raw.startsWith('javascript:')) return;
+    if (!raw) return;
     try {
       const url = new URL(raw, location.href);
-      if (url.origin === location.origin && url.href !== location.href) warm(url.href);
-    } catch (_) {}
+      if (url.origin === location.origin) warm(url.href);
+    } catch {}
   }, { passive: true });
 
   document.addEventListener('click', (event) => {
@@ -36,7 +36,7 @@
     if (!raw || raw.startsWith('#') || raw.startsWith('javascript:')) return;
 
     let url;
-    try { url = new URL(raw, location.href); } catch (_) { return; }
+    try { url = new URL(raw, location.href); } catch { return; }
     if (url.origin !== location.origin || url.href === location.href) return;
 
     event.preventDefault();
@@ -49,12 +49,12 @@
 
     root.classList.remove('page-ready');
     root.classList.add('page-leaving');
-    window.setTimeout(() => location.assign(url.href), 130);
+    window.setTimeout(() => location.assign(url.href), 90);
   }, { passive: false });
 
   window.addEventListener('pageshow', () => {
     navigating = false;
     root.classList.remove('page-leaving');
-    requestAnimationFrame(() => root.classList.add('page-ready'));
+    root.classList.add('page-ready');
   });
 })();
