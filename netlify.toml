@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/music"
+  to = "/.netlify/functions/music"
+  status = 200
+  force = true

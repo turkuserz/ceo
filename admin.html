@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="./css/global.css">
 <link rel="stylesheet" href="./css/final-polish.css">
 <link rel="stylesheet" href="./css/performance.css">
-<link rel="stylesheet" href="./css/music-player.css?v=20260920-fix2">
+<link rel="stylesheet" href="./css/music-player.css?v=20260920-wellesley">
+<link rel="stylesheet" href="./css/music-admin.css?v=20260920-wellesley">
 <style>
 :root{--line:rgba(255,255,255,.13);--line2:rgba(255,255,255,.22);--glass:rgba(7,7,7,.66);--muted:#777;--soft:#aaa}
 *{box-sizing:border-box}
@@ -74,6 +75,18 @@ body{overflow-y:scroll!important}
 <header class="hero"><div class="eyebrow">BASTIEN MANAGEMENT</div><div class="title">ADMIN</div><div class="sub">MEMBER CONTROL CENTER</div></header>
 <section class="toolbar"><div class="toolbar-left"><span class="status-dot"></span><div><div class="toolbar-title">MEMBER MANAGEMENT</div></div></div><div class="toolbar-right"><div class="notice" id="accountNotice">KEYAUTH • SECURE ACCESS</div><button class="logout" id="logout" type="button">LOGOUT</button></div></section>
 <section class="quick-guide" aria-label="Quick guide"><div class="guide"><div class="guide-num">01 / ADD</div><strong>เพิ่มสมาชิก</strong><span>กรอกชื่อ เลือกยศ ใส่ลิงก์ และรูป แล้วกด ADD</span></div><div class="guide"><div class="guide-num">02 / EDIT</div><strong>แก้ข้อมูล</strong><span>กด EDIT ที่สมาชิกคนนั้น เพื่อเปลี่ยนชื่อ ยศ ลิงก์ หรือรูป</span></div><div class="guide"><div class="guide-num">03 / DELETE</div><strong>ลบสมาชิก</strong><span>กด DELETE เมื่อต้องการนำสมาชิกออกจากกลุ่ม</span></div></section>
+<section id="bastienMusicSettings" aria-labelledby="musicSettingsTitle">
+  <div class="music-settings-head"><div><span class="music-settings-kicker">SOUND / SITE SETTINGS</span><h2 id="musicSettingsTitle">MUSIC SETTINGS</h2><p class="music-settings-note">Change the track without changing the member database.</p></div><div class="music-settings-disc"><img id="musicSettingsCover" alt="Current song cover" src="https://i.ytimg.com/vi/dTS_aNfpbIM/hqdefault.jpg"></div></div>
+  <form id="bastienMusicSettingsForm">
+    <div class="music-settings-grid">
+      <label class="music-settings-field" for="musicYoutubeUrl">YOUTUBE URL<input id="musicYoutubeUrl" type="url" inputmode="url" placeholder="https://www.youtube.com/watch?v=..." maxlength="300" required></label>
+      <label class="music-settings-field" for="musicSongTitle">SONG TITLE<input id="musicSongTitle" maxlength="100" required placeholder="Song name"></label>
+      <label class="music-settings-field" for="musicSongArtist">ARTIST<input id="musicSongArtist" maxlength="100" required placeholder="Artist name"></label>
+      <label class="music-settings-field" for="musicStartSeconds">START (SEC)<input id="musicStartSeconds" type="number" inputmode="numeric" min="0" max="86400" step="1" value="0" required></label>
+    </div>
+    <div class="music-settings-bottom"><div id="musicSettingsStatus" class="music-settings-status" role="status" aria-live="polite">Checking backend…</div><button class="music-settings-save" id="musicSettingsSave" type="submit">SAVE MUSIC</button></div>
+  </form>
+</section>
 <div class="dashboard"><div><div class="section-label">GROUPS & MEMBERS</div><div class="admin-scroll-hint">SCROLL TO VIEW ALL GROUPS</div></div><div class="stats"><div class="stat"><b id="totalMembers">0</b><span>TOTAL</span></div><div class="stat"><b id="totalLeaders">0</b><span>LEADERS</span></div><div class="stat"><b id="totalGroups">0</b><span>GROUPS</span></div></div></div>
 <section class="groups" id="groups"></section>
 <div class="state" id="state">LOADING DATABASE...</div>
@@ -86,6 +99,7 @@ import { checkKeyAuthSession, logoutKeyAuth, getKeyAuthUser } from './js/keyauth
 import { watchMembers, addMember, updateMember, deleteMember, clearMembers } from './js/firebase-members.js';
 import { GROUPS } from './js/firebase-config.js';
 import { groupProfile } from './js/group-assets.js';
+import { initMusicAdmin } from './js/music-admin.js';
 
 const panel=document.getElementById('panel'), denied=document.getElementById('denied'), deniedTitle=document.getElementById('deniedTitle'), deniedSub=document.getElementById('deniedSub'), groupsEl=document.getElementById('groups'), state=document.getElementById('state');
 const clearBtn=document.getElementById('clearAll'); const logoutBtn=document.getElementById('logout');
@@ -108,6 +122,7 @@ const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
   panel.style.display='block';
   const notice = document.getElementById('accountNotice');
   if(notice && account?.username) notice.textContent='KEYAUTH • '+account.username.toUpperCase()+' • FIREBASE DATABASE';
+  initMusicAdmin();
   watchMembers(next=>{data=next;ready=true;state.textContent='LIVE • DATABASE CONNECTED';render();},err=>{state.textContent='DATABASE ERROR: '+(err?.message||'UNKNOWN');});
 })();
 
@@ -173,7 +188,7 @@ editForm.onsubmit=async e=>{
 clearBtn.onclick=async()=>{if(!ready||!confirm('ลบสมาชิกทั้งหมดจากทุกกลุ่มใน Firebase ใช่ไหม?'))return;clearBtn.disabled=true;state.textContent='CLEARING DATABASE...';try{await clearMembers();state.textContent='ALL MEMBERS CLEARED';}catch(e){state.textContent='CLEAR ERROR: '+e.message;}finally{clearBtn.disabled=false;}};
 logoutBtn.onclick=async()=>{await logoutKeyAuth();location.replace('/login');};
 </script>
-<script src="./js/music.js?v=20260920-fix2" defer></script>
+<script src="./js/music.js?v=20260920-wellesley" defer></script>
 <script src="./js/transition.js" defer></script>
 <script>window.addEventListener("error",()=>{const t=document.getElementById("deniedTitle"),s=document.getElementById("deniedSub");if(t&&s){t.textContent="OPEN VIA LOCAL SERVER";s.textContent="DOUBLE-CLICKING HTML WILL NOT LOAD FIREBASE AUTH. USE START.BAT.";}});window.addEventListener("unhandledrejection",()=>{const t=document.getElementById("deniedTitle"),s=document.getElementById("deniedSub");if(t&&s){t.textContent="FIREBASE CONNECTION ERROR";s.textContent="CHECK FIREBASE AUTH OR OPEN THIS SITE THROUGH A LOCAL SERVER.";}});</script>
 </body>

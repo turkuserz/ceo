@@ -1,188 +1,67 @@
-/* One small rounded monochrome music dock, shared by all four active pages. */
-#bastienMusicDock {
-  box-sizing:border-box;
-  position:fixed!important;
-  inset:auto 18px 18px auto!important;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  width:min(326px,calc(100vw - 24px));
-  min-height:62px;
-  padding:9px 10px;
-  border:1px solid rgba(255,255,255,.20)!important;
-  border-radius:7px;
-  background:rgba(8,8,9,.94)!important;
-  color:#f5f5f5;
-  box-shadow:0 10px 30px rgba(0,0,0,.36)!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
-  isolation:isolate;
-  font-family:Inter,Arial,sans-serif;
-  transition:background-color .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1);
+/* BASTIEN / Wellesley-inspired unified player. 200x200 unobstructed video is
+   required by YouTube; the ONE card is kept as narrow as that minimum permits. */
+#bastienMusicDock,#bastienMusicDock *{box-sizing:border-box}
+#bastienMusicDock{
+  position:fixed!important;inset:auto 18px 18px auto!important;z-index:9999;
+  display:flex;flex-direction:column;align-items:stretch;gap:9px;
+  width:224px;max-width:calc(100vw - 24px);margin:0;padding:11px;
+  border:1px solid rgba(255,255,255,.22)!important;border-radius:14px;
+  background:rgba(7,7,9,.94)!important;color:#fafafa;
+  box-shadow:0 18px 44px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.045);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  font-family:Inter,Arial,sans-serif;isolation:isolate;
+  transition:border-color .22s ease,box-shadow .22s ease;
 }
-#bastienMusicDock::after {display:none!important}
-#bastienMusicDock:hover {
-  background:rgba(17,17,18,.98)!important;
-  border-color:rgba(255,255,255,.34)!important;
-  transform:translateY(-2px);
+#bastienMusicDock:hover{border-color:rgba(255,255,255,.35)!important;box-shadow:0 21px 49px rgba(0,0,0,.55),0 0 18px rgba(255,255,255,.035)}
+#bastienMusicDock .music-video-shell{
+  width:200px;height:200px;flex:0 0 200px;max-width:100%;
+  overflow:visible;background:#050505;border:0;box-shadow:0 0 0 1px rgba(255,255,255,.13);
+  border-radius:5px;align-self:center;
 }
-#bastienMusicDock .music-cover {
-  width:42px;
-  height:42px;
-  flex:0 0 42px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:4px;
-  background:#222;
+#bastienMusicDock #bastienMusicFrame{
+  display:block!important;position:static!important;opacity:1!important;visibility:visible!important;
+  pointer-events:auto!important;width:200px!important;height:200px!important;
+  max-width:none!important;min-width:200px!important;min-height:200px!important;
+  border:0!important;margin:0!important;padding:0!important;background:#000!important;
 }
-#bastienMusicDock .music-cover img {
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+#bastienMusicDock .music-track{display:flex;align-items:center;gap:9px;min-width:0;padding-top:1px}
+#bastienMusicDock .music-vinyl{
+  width:45px;height:45px;flex:0 0 45px;border-radius:50%;
+  border:3px solid #191919;position:relative;overflow:hidden;background:#222;
+  box-shadow:0 4px 12px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.13);
 }
-#bastienMusicDock .music-meta {
-  display:flex;
-  flex:1 1 auto;
-  flex-direction:column;
-  justify-content:center;
-  gap:5px;
-  min-width:0;
-}
-#bastienMusicDock .music-title {
-  display:block;
-  overflow:hidden;
-  color:#f5f5f5;
-  font-size:11px;
-  font-weight:700;
-  line-height:1.25;
-  letter-spacing:.01em;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-#bastienMusicDock .music-artist {
-  display:block;
-  overflow:hidden;
-  color:#999;
-  font-size:10px;
-  font-weight:500;
-  line-height:1.25;
-  letter-spacing:.015em;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-#bastienMusicDock .music-actions {
-  display:flex;
-  gap:5px;
-  align-items:center;
-  flex:0 0 auto;
-}
-#bastienMusicDock .music-control {
-  box-sizing:border-box;
-  display:grid;
-  place-items:center;
-  width:31px;
-  height:31px;
-  padding:0;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:5px;
-  background:rgba(255,255,255,.045);
-  color:#e8e8e8;
-  cursor:pointer;
-  transition:color .18s ease,background-color .18s ease,border-color .18s ease,transform .18s ease;
-}
-#bastienMusicDock .music-control svg {
-  width:15px;
-  height:15px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.65;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-#bastienMusicDock .music-control:hover:not(:disabled),
-#bastienMusicDock .music-control:focus-visible {
-  color:#090909;
-  background:#fff;
-  border-color:#fff;
-  transform:translateY(-1px);
-}
-#bastienMusicDock .music-control:disabled {cursor:default;opacity:.42}
-#bastienMusicDock .music-control:active:not(:disabled) {transform:translateY(0)!important}
-#bastienMusicDock .music-sr-only {
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
-/* Visible YouTube iframe: minimum size, unobscured, adjacent to dock. */
-#bastienMusicFrame {
-  box-sizing:border-box;
-  position:fixed!important;
-  left:auto!important;
-  top:auto!important;
-  right:18px!important;
-  bottom:90px!important;
-  width:200px!important;
-  height:200px!important;
-  opacity:1!important;
-  visibility:visible!important;
-  pointer-events:auto!important;
-  z-index:9998;
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:5px;
-  background:#000;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-#bastienMusicDock .music-hint {
-  display:block;
-  color:#ededed;
-  font-size:9px;
-  line-height:1.3;
-  white-space:normal;
-}
-#bastienMusicDock .music-hint[hidden],
-#bastienMusicDock .music-external[hidden] { display:none!important; }
-#bastienMusicDock .music-external {
-  position:absolute;
-  bottom:2px;
-  right:7px;
-  z-index:1;
-  padding:2px 3px;
-  color:#fff;
-  font-size:9px;
-  background:#111;
-  text-decoration:underline;
-}
-#bastienMusicDock:has(.music-external:not([hidden])) { padding-bottom:21px; }
-@media(max-width:700px) {
-  #bastienMusicDock {right:12px!important;bottom:12px!important}
-  #bastienMusicFrame {right:12px!important;bottom:82px!important}
-}
-@media(max-width:460px) {
-  body.home-page #bastienMusicDock {bottom:65px!important}
-  body.home-page #bastienMusicFrame {bottom:135px!important}
-  #bastienMusicDock {gap:8px;min-height:58px;padding:7px 8px}
-  #bastienMusicDock .music-cover {width:38px;height:38px;flex-basis:38px}
-  #bastienMusicDock .music-actions {gap:4px}
-  #bastienMusicDock .music-control {width:29px;height:29px}
-}
-@media(prefers-reduced-motion:reduce) {
-  #bastienMusicDock,#bastienMusicDock:hover,#bastienMusicDock .music-control {
-    transform:none!important;
-    transition:none!important;
-  }
-}
-
-/* Draw attention only when browser policy requires a manual unmute. */
-#bastienMusicDock[data-autoplay-fallback="true"] #bastienMusicMute {
-  color:#fff;
-  border-color:rgba(255,255,255,.7);
-  background:rgba(255,255,255,.12);
-}
+#bastienMusicDock .music-vinyl img{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%;filter:grayscale(.35)}
+#bastienMusicDock .music-vinyl:after{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;transform:translate(-50%,-50%);border:2px solid rgba(255,255,255,.45);border-radius:50%;background:#0b0b0b;box-shadow:0 0 0 5px rgba(0,0,0,.23)}
+#bastienMusicDock[data-playing="true"] .music-vinyl img{animation:bastienVinylSpin 9s linear infinite}
+@keyframes bastienVinylSpin{to{transform:rotate(360deg)}}
+#bastienMusicDock .music-meta{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+#bastienMusicDock .music-overline{font-size:7px;letter-spacing:1.8px;color:#777;font-weight:800;white-space:nowrap}
+#bastienMusicDock .music-live-dot{display:inline-block;width:4px;height:4px;margin-left:3px;vertical-align:middle;border-radius:50%;background:#a9a9a9;opacity:.55}
+#bastienMusicDock[data-playing="true"] .music-live-dot{opacity:1;box-shadow:0 0 6px rgba(255,255,255,.55)}
+#bastienMusicDock .music-title,#bastienMusicDock .music-artist{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.28}
+#bastienMusicDock .music-title{font-size:10px;font-weight:750;letter-spacing:.01em;color:#fff}
+#bastienMusicDock .music-artist{font-size:9px;font-weight:500;color:#999}
+#bastienMusicDock .music-controls{display:flex;align-items:center;gap:5px;min-width:0;padding-top:7px;border-top:1px solid rgba(255,255,255,.10)}
+#bastienMusicDock .music-button{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;padding:0;border:1px solid transparent;border-radius:7px;background:transparent;color:#a5a5a5;cursor:pointer;transition:color .18s,border-color .18s,background-color .18s}
+#bastienMusicDock .music-button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+#bastienMusicDock .music-button.music-main-button{color:#050505;background:#f2f2f2;border-color:#f2f2f2}
+#bastienMusicDock .music-button:hover:not(:disabled),#bastienMusicDock .music-button:focus-visible{color:#fff;background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.17)}
+#bastienMusicDock .music-button.music-main-button:hover:not(:disabled){background:#d6d6d6;color:#050505}
+#bastienMusicDock .music-button:disabled{opacity:.42;cursor:default}
+#bastienMusicDock .music-volume-label{flex:1;min-width:0;display:flex;align-items:center;margin-left:2px}
+#bastienMusicDock input[type="range"]{width:100%;height:20px;margin:0;cursor:pointer;appearance:none;-webkit-appearance:none;background:transparent;outline-offset:3px}
+#bastienMusicDock input[type="range"]::-webkit-slider-runnable-track{height:3px;border-radius:3px;background:linear-gradient(90deg,#eee var(--music-progress,65%),#444 var(--music-progress,65%))}
+#bastienMusicDock input[type="range"]::-moz-range-track{height:3px;border-radius:3px;background:#444}
+#bastienMusicDock input[type="range"]::-moz-range-progress{height:3px;background:#eee}
+#bastienMusicDock input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:9px;height:9px;margin-top:-3px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.10)}
+#bastienMusicDock input[type="range"]::-moz-range-thumb{width:9px;height:9px;border:0;border-radius:50%;background:#fff}
+#bastienMusicDock .music-hint{margin:0;color:#c4c4c4;font-size:9px;line-height:1.5}
+#bastienMusicDock .music-external{font-size:9px;letter-spacing:1px;text-decoration:none;color:#fff}
+#bastienMusicDock .music-external:hover{text-decoration:underline}
+#bastienMusicDock .music-hint[hidden],#bastienMusicDock .music-external[hidden]{display:none!important}
+#bastienMusicDock .music-sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#bastienMusicDock[data-autoplay-fallback="true"] #bastienMusicMute{border-color:rgba(255,255,255,.65);color:#fff;background:rgba(255,255,255,.13)}
+@media(max-width:700px){#bastienMusicDock{right:12px!important;bottom:12px!important}}
+@media(max-width:460px){body.home-page #bastienMusicDock{bottom:58px!important}#bastienMusicDock{width:224px}}
+@media(max-height:470px){#bastienMusicDock{bottom:8px!important;max-height:calc(100vh - 16px);overflow-y:auto}}
+@media(prefers-reduced-motion:reduce){#bastienMusicDock,#bastienMusicDock .music-button{transition:none!important}#bastienMusicDock .music-vinyl img{animation:none!important}}
