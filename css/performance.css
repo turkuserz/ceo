@@ -1,0 +1,22 @@
+/* Lightweight overrides only: layout, authentication and member data are unchanged. */
+html {opacity:1!important;backface-visibility:visible;transform:none;}
+html.page-ready {opacity:1!important;filter:none!important;transform:none!important;transition:opacity .16s ease!important}
+html.page-leaving {opacity:0!important;filter:none!important;transform:none!important;transition:opacity .14s ease!important}
+body {animation:none!important;filter:none!important;
+  background-image:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.80)),url('../assets/Bastienstyle.webp')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+}
+/* The login's existing separate background layer also uses the optimized image. */
+.bg {background-image:url('../assets/Bastienstyle.webp')!important}
+.card,.filter,.search,.member-box,.roster-bg {will-change:auto!important}
+.card,.member-box,.nav a,.social-btn {backface-visibility:visible}
+@media(max-width:700px) {
+  body {background-attachment:scroll!important}
+  .nav,.card,.member-box,.search,.filter {backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important}
+}
+@media(prefers-reduced-motion:reduce) {
+  html,html.page-ready,html.page-leaving {opacity:1!important;transition:none!important}
+}

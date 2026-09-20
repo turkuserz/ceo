@@ -10,7 +10,7 @@ body {
   background-image:
     radial-gradient(circle at 88% 86%, var(--b-red) 0, rgba(255,48,48,.055) 13%, transparent 31%),
     linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.78)),
-    url('../assets/Bastienstyle.png') !important;
+    url('../assets/Bastienstyle.webp') !important;
   background-position:center, center, center;
   background-size:cover, cover, cover;
   background-repeat:no-repeat;
