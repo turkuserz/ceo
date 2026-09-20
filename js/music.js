@@ -1,12 +1,12 @@
-/* BASTIEN music dock — one YouTube player per page, no database dependencies. */
+/* BASTIEN music: a single visible YouTube embed, sound-first autoplay and muted fallback.
+   This module never reads or writes Firebase, authentication or member data. */
 (() => {
   'use strict';
   if (document.getElementById('bastienMusicDock')) return;
 
   const VIDEO_ID = 'dTS_aNfpbIM';
-  const COVER = `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`;
-  const TITLE = 'Chest Pain (I Love)';
-  const ARTIST = 'Malcolm Todd';
+  const VIDEO_URL = `https://www.youtube.com/watch?v=${VIDEO_ID}`;
+  const VOLUME = 65;
   const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7V5Z" fill="currentColor" stroke="none"/></svg>';
   const PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/></svg>';
   const SOUND = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15 9a5 5 0 0 1 0 6M18 6a9 9 0 0 1 0 12"/></svg>';
@@ -16,41 +16,50 @@
   dock.id = 'bastienMusicDock';
   dock.setAttribute('aria-label', 'BASTIEN music player');
   dock.innerHTML = `
-    <div class="music-cover" aria-hidden="true"><img src="${COVER}" alt="" loading="lazy" decoding="async"></div>
+    <div class="music-cover" aria-hidden="true"><img src="https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg" alt="" loading="lazy" decoding="async"></div>
     <div class="music-meta">
-      <span class="music-title" title="${TITLE}">${TITLE}</span>
-      <span class="music-artist" title="${ARTIST}">${ARTIST}</span>
+      <span class="music-title" title="Chest Pain (I Love)">Chest Pain (I Love)</span>
+      <span class="music-artist">Malcolm Todd</span>
+      <span class="music-hint" id="bastienMusicHint" hidden></span>
     </div>
     <div class="music-actions">
       <button type="button" id="bastienMusicPlay" class="music-control" aria-label="Play music" title="Play music" disabled>${PLAY}</button>
-      <button type="button" id="bastienMusicMute" class="music-control" aria-label="Unmute music" title="Unmute music" disabled>${MUTED}</button>
+      <button type="button" id="bastienMusicMute" class="music-control" aria-label="Mute music" title="Mute music" disabled>${SOUND}</button>
     </div>
-    <span class="music-sr-only" id="bastienMusicStatus" role="status" aria-live="polite">Loading music</span>`;
+    <a id="bastienMusicExternal" class="music-external" href="${VIDEO_URL}" target="_blank" rel="noopener noreferrer" hidden>Open on YouTube</a>
+    <span class="music-sr-only" id="bastienMusicStatus" role="status" aria-live="polite">Loading YouTube music</span>`;
   document.body.appendChild(dock);
 
-  // Keep the iframe measurable for YouTube, but outside the visible layout.
+  // YouTube requires a visible player of at least 200 × 200 pixels for autoplay.
+  // The API replaces this div with ONE iframe. It must not be offscreen or overlaid.
   const frame = document.createElement('div');
   frame.id = 'bastienMusicFrame';
   document.body.appendChild(frame);
 
   const playButton = dock.querySelector('#bastienMusicPlay');
   const muteButton = dock.querySelector('#bastienMusicMute');
+  const hint = dock.querySelector('#bastienMusicHint');
   const status = dock.querySelector('#bastienMusicStatus');
+  const external = dock.querySelector('#bastienMusicExternal');
   let player = null;
   let ready = false;
   let playing = false;
-  let muted = true;
-  let heardPlaying = false;
+  let muted = false;
   let errored = false;
+  let interacted = false;
+  let phase = 'sound'; // sound -> muted -> done
+  let startTimer = null;
+  let scriptTimer = null;
 
-  function announce(message) {
+  function announce(message, visible = false) {
     status.textContent = message;
+    hint.textContent = visible ? message : '';
+    hint.hidden = !visible;
     dock.title = message;
   }
-
   function updateControls() {
-    playButton.disabled = !ready;
-    muteButton.disabled = !ready;
+    playButton.disabled = !ready || errored;
+    muteButton.disabled = !ready || errored;
     playButton.innerHTML = playing ? PAUSE : PLAY;
     playButton.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
     playButton.title = playing ? 'Pause music' : 'Play music';
@@ -60,35 +69,94 @@
     muteButton.setAttribute('aria-pressed', String(!muted));
     dock.dataset.playing = String(playing);
     dock.dataset.muted = String(muted);
+    dock.dataset.autoplayFallback = String(muted && !interacted);
+  }
+  function clearStartTimer() {
+    if (startTimer !== null) window.clearTimeout(startTimer);
+    startTimer = null;
+  }
+  function playingNow() {
+    try { return player.getPlayerState() === window.YT.PlayerState.PLAYING; }
+    catch (_) { return playing; }
+  }
+  function showPlaybackError(message) {
+    errored = true;
+    playing = false;
+    phase = 'done';
+    clearStartTimer();
+    announce(message, true);
+    external.hidden = false;
+    updateControls();
+  }
+  function fallbackMuted() {
+    if (!ready || errored || interacted || phase !== 'sound') return;
+    // Never silence a sound-first attempt that has already succeeded.
+    if (playingNow()) {
+      phase = 'done';
+      playing = true;
+      muted = player.isMuted();
+      announce(muted ? 'Playing muted — press speaker for sound' : 'Playing with sound', muted);
+      clearStartTimer();
+      updateControls();
+      return;
+    }
+    phase = 'muted';
+    clearStartTimer();
+    try {
+      player.mute();
+      muted = true;
+      announce('Autoplay with sound blocked — trying muted', true);
+      updateControls();
+      player.playVideo();
+      if (phase === 'muted' && !playingNow()) {
+        startTimer = window.setTimeout(() => {
+          if (!interacted && phase === 'muted' && !playingNow()) {
+            phase = 'done';
+            playing = false;
+            announce('Press Play to start music', true);
+            updateControls();
+          }
+        }, 4000);
+      }
+    } catch (_) {
+      phase = 'done';
+      announce('Press Play to start music', true);
+      updateControls();
+    }
   }
 
   playButton.addEventListener('click', () => {
-    if (!ready || !player) return;
+    if (!ready || errored || !player) return;
+    interacted = true;
+    phase = 'done';
+    clearStartTimer();
     try {
-      if (playing) {
+      if (playingNow()) {
         player.pauseVideo();
         playing = false;
         announce('Music paused');
       } else {
-        // A real user click also serves as a fallback when autoplay is blocked.
+        // Explicit Play is a user gesture. Try sound again after muted fallback.
+        player.setVolume(VOLUME);
+        player.unMute();
+        muted = false;
         player.playVideo();
         announce('Starting music');
       }
       updateControls();
-    } catch (_) {
-      announce('Unable to control playback');
-    }
+    } catch (_) { announce('Unable to control playback', true); }
   });
-
   muteButton.addEventListener('click', () => {
-    if (!ready || !player) return;
+    if (!ready || errored || !player) return;
+    interacted = true;
+    phase = 'done';
+    clearStartTimer();
     try {
-      if (muted) {
-        player.setVolume(60);
+      if (player.isMuted()) {
+        player.setVolume(VOLUME);
         player.unMute();
         muted = false;
-        // Unmuting never seeks, restarts, or silently mutes again.
-        if (!playing) player.playVideo();
+        if (!playingNow()) player.playVideo();
         announce('Sound on');
       } else {
         player.mute();
@@ -96,92 +164,109 @@
         announce('Sound off');
       }
       updateControls();
-    } catch (_) {
-      announce('Unable to change volume');
-    }
+    } catch (_) { announce('Unable to change sound', true); }
   });
 
   function initYouTube() {
     if (player || !window.YT || !window.YT.Player) return;
-    player = new window.YT.Player('bastienMusicFrame', {
-      width: 200,
-      height: 200,
-      videoId: VIDEO_ID,
-      playerVars: {
-        autoplay: 1,
-        start: 0,
-        controls: 0,
-        disablekb: 1,
-        fs: 0,
-        loop: 1,
-        playlist: VIDEO_ID,
-        playsinline: 1,
-        rel: 0,
-        mute: 1,
-        ...(location.origin !== 'null' ? { origin: location.origin } : {})
-      },
-      events: {
-        onReady(event) {
-          ready = true;
-          // Browsers generally allow muted autoplay; sound requires a user gesture.
-          event.target.mute();
-          muted = true;
-          event.target.setVolume(60);
-          event.target.seekTo(0, true);
-          announce('Autoplay starting with sound off');
-          updateControls();
-          event.target.playVideo();
-          window.setTimeout(() => {
-            if (ready && !heardPlaying && !errored) {
-              playing = false;
-              announce('Autoplay blocked. Press Play to start music.');
+    if (scriptTimer !== null) window.clearTimeout(scriptTimer);
+    try {
+      player = new window.YT.Player('bastienMusicFrame', {
+        width: 200,
+        height: 200,
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 1, // Start on page load; browser may disallow sound.
+          mute: 0,
+          start: 0,
+          controls: 1,
+          loop: 1,
+          playlist: VIDEO_ID,
+          playsinline: 1,
+          rel: 0,
+          ...(location.origin !== 'null' ? { origin: location.origin } : {})
+        },
+        events: {
+          onReady(event) {
+            ready = true;
+            try {
+              const iframe = typeof event.target.getIframe === 'function' ? event.target.getIframe() : document.getElementById('bastienMusicFrame');
+              if (iframe) {
+                iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+                iframe.setAttribute('title', 'Malcolm Todd — Chest Pain (I Love)');
+              }
+              event.target.setVolume(VOLUME);
+              event.target.unMute();
+              muted = false;
+              announce('Attempting autoplay with sound');
               updateControls();
+              event.target.playVideo();
+              if (phase === 'sound' && !interacted) {
+                startTimer = window.setTimeout(fallbackMuted, 3000);
+              }
+            } catch (_) { fallbackMuted(); }
+          },
+          onStateChange(event) {
+            const states = window.YT.PlayerState;
+            if (event.data === states.PLAYING) {
+              playing = true;
+              muted = event.target.isMuted();
+              phase = 'done';
+              clearStartTimer();
+              announce(muted ? 'Playing muted — press speaker for sound' : 'Playing with sound', muted && !interacted);
+            } else if (event.data === states.PAUSED) {
+              playing = false;
+              if (interacted) announce('Music paused');
+            } else if (event.data === states.ENDED) {
+              playing = false;
+              try { event.target.seekTo(0, true); event.target.playVideo(); } catch (_) {}
             }
-          }, 5000);
-        },
-        onStateChange(event) {
-          const states = window.YT.PlayerState;
-          if (event.data === states.PLAYING) {
-            heardPlaying = true;
-            playing = true;
-            muted = event.target.isMuted();
-            announce(muted ? 'Now playing with sound off' : 'Now playing with sound on');
-          } else if (event.data === states.PAUSED) {
-            playing = false;
-            announce('Music paused');
-          } else if (event.data === states.ENDED) {
-            playing = false;
-            try { event.target.seekTo(0, true); event.target.playVideo(); } catch (_) {}
+            updateControls();
+          },
+          onAutoplayBlocked() {
+            if (playingNow()) return;
+            if (!interacted && phase === 'sound') {
+              if (ready) fallbackMuted();
+              // If autoplay was blocked before onReady, onReady will retry sound first.
+            } else if (!interacted && phase === 'muted') {
+              phase = 'done';
+              clearStartTimer();
+              announce('Press Play to start music', true);
+              updateControls();
+            } else {
+              announce('Playback blocked — press Play to retry', true);
+            }
+          },
+          onError(event) {
+            const code = event && event.data;
+            showPlaybackError(code === 100 || code === 101 || code === 150
+              ? 'Video cannot play here — open YouTube'
+              : 'YouTube playback unavailable');
           }
-          updateControls();
-        },
-        onAutoplayBlocked() {
-          playing = false;
-          announce('Autoplay blocked. Press Play to start music.');
-          updateControls();
-        },
-        onError() {
-          errored = true;
-          playing = false;
-          announce('YouTube playback unavailable');
-          updateControls();
         }
-      }
-    });
+      });
+    } catch (_) { showPlaybackError('Could not initialize YouTube player'); }
   }
 
   updateControls();
-  // Avoid a second script or player even if this file is included twice.
   if (window.YT && window.YT.Player) {
     initYouTube();
   } else {
-    window.onYouTubeIframeAPIReady = initYouTube;
+    const previousReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof previousReady === 'function') previousReady();
+      initYouTube();
+    };
     if (!document.querySelector('script[data-bastien-yt-api]')) {
       const api = document.createElement('script');
       api.src = 'https://www.youtube.com/iframe_api';
       api.async = true;
       api.dataset.bastienYtApi = '1';
+      api.onerror = () => showPlaybackError('YouTube could not load — open YouTube');
       document.head.appendChild(api);
     }
+    scriptTimer = window.setTimeout(() => {
+      if (!player) showPlaybackError('YouTube could not load — open YouTube');
+    }, 12000);
   }
 })();

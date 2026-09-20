@@ -1,4 +1,4 @@
-/* One small, square-cornered monochrome dock on all four active site pages. */
+/* One small rounded monochrome music dock, shared by all four active pages. */
 #bastienMusicDock {
   box-sizing:border-box;
   position:fixed!important;
@@ -121,21 +121,53 @@
   white-space:nowrap;
   border:0;
 }
+/* Visible YouTube iframe: minimum size, unobscured, adjacent to dock. */
 #bastienMusicFrame {
+  box-sizing:border-box;
   position:fixed!important;
-  left:-10000px!important;
-  top:0!important;
+  left:auto!important;
+  top:auto!important;
+  right:18px!important;
+  bottom:90px!important;
   width:200px!important;
   height:200px!important;
-  opacity:0;
-  pointer-events:none;
-  border:0;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  z-index:9998;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:5px;
+  background:#000;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
+#bastienMusicDock .music-hint {
+  display:block;
+  color:#ededed;
+  font-size:9px;
+  line-height:1.3;
+  white-space:normal;
+}
+#bastienMusicDock .music-hint[hidden],
+#bastienMusicDock .music-external[hidden] { display:none!important; }
+#bastienMusicDock .music-external {
+  position:absolute;
+  bottom:2px;
+  right:7px;
+  z-index:1;
+  padding:2px 3px;
+  color:#fff;
+  font-size:9px;
+  background:#111;
+  text-decoration:underline;
+}
+#bastienMusicDock:has(.music-external:not([hidden])) { padding-bottom:21px; }
 @media(max-width:700px) {
   #bastienMusicDock {right:12px!important;bottom:12px!important}
+  #bastienMusicFrame {right:12px!important;bottom:82px!important}
 }
 @media(max-width:460px) {
   body.home-page #bastienMusicDock {bottom:65px!important}
+  body.home-page #bastienMusicFrame {bottom:135px!important}
   #bastienMusicDock {gap:8px;min-height:58px;padding:7px 8px}
   #bastienMusicDock .music-cover {width:38px;height:38px;flex-basis:38px}
   #bastienMusicDock .music-actions {gap:4px}
@@ -146,4 +178,11 @@
     transform:none!important;
     transition:none!important;
   }
+}
+
+/* Draw attention only when browser policy requires a manual unmute. */
+#bastienMusicDock[data-autoplay-fallback="true"] #bastienMusicMute {
+  color:#fff;
+  border-color:rgba(255,255,255,.7);
+  background:rgba(255,255,255,.12);
 }

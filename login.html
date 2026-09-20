@@ -31,7 +31,7 @@ body{min-height:100vh;overflow:hidden}.bg{position:fixed;inset:0;background:url(
 <link rel="stylesheet" href="./css/global.css">
 <link rel="stylesheet" href="./css/final-polish.css">
 <link rel="stylesheet" href="./css/performance.css">
-<link rel="stylesheet" href="./css/music-player.css">
+<link rel="stylesheet" href="./css/music-player.css?v=20260920-fix2">
 </head>
 <body>
 <div class="bg"></div><nav class="nav" aria-label="Primary navigation">
@@ -60,6 +60,6 @@ form.addEventListener("submit",async e=>{
  catch(err){console.error("BASTIEN KeyAuth login:",err);s.className="status bad";s.textContent=err?.message||"LOGIN FAILED";b.disabled=false;p.focus();p.select()}
 });
 </script>
-<script src="./js/music.js" defer></script>
+<script src="./js/music.js?v=20260920-fix2" defer></script>
 <script src="./js/transition.js" defer></script>
 </body></html>
