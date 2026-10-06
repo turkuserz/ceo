@@ -4,7 +4,7 @@ const {DEFAULT,normalize,videoIdFrom,handle}=require('../server/music-service');
 const originalFetch=global.fetch;
 const originalEnv=process.env.BASTIEN_FIREBASE_SERVICE_ACCOUNT;
 const {privateKey}=generateKeyPairSync('rsa',{modulusLength:2048});
-process.env.BASTIEN_FIREBASE_SERVICE_ACCOUNT=JSON.stringify({project_id:'bastien2k26',client_email:'music-test@bastien2k26.iam.gserviceaccount.com',private_key:privateKey.export({type:'pkcs8',format:'pem'})});
+process.env.BASTIEN_FIREBASE_SERVICE_ACCOUNT=JSON.stringify({project_id:'stanbastienx',client_email:'music-test@stanbastienx.iam.gserviceaccount.com',private_key:privateKey.export({type:'pkcs8',format:'pem'})});
 let record=null,requests=[],validSession=true;
 const ok=(data)=>({ok:true,status:200,json:async()=>data});
 global.fetch=async(url,opts={})=>{

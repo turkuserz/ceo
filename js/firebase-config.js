@@ -2,14 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/fireba
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdoALjs11IvuwKiyc5-Hf7cLZApCp6YBA",
-  authDomain: "bastien2k26.firebaseapp.com",
-  databaseURL: "https://bastien2k26-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "bastien2k26",
-  storageBucket: "bastien2k26.firebasestorage.app",
-  messagingSenderId: "698256376038",
-  appId: "1:698256376038:web:5619763ee0e3e901dbbb27",
-  measurementId: "G-0H3C4BZQ60"
+  apiKey: "AIzaSyCV0wMsXqqptmgBvcYSXowmQ6ah0_LsBHA",
+  authDomain: "stanbastienx.firebaseapp.com",
+  databaseURL: "https://stanbastienx-default-rtdb.firebaseio.com",
+  projectId: "stanbastienx",
+  storageBucket: "stanbastienx.firebasestorage.app",
+  messagingSenderId: "217347809451",
+  appId: "1:217347809451:web:04b9d09350f92d070117ee",
+  measurementId: "G-TSC7S5B8XJ"
 };
 
 export const GROUPS = ["BASTIEN", "EVELYN", "STANNOWAYHOME", "JOPNOK", "ASSASSIN"];
