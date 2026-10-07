@@ -3,7 +3,7 @@
 'use strict';
 const { createSign } = require('node:crypto');
 const DEFAULT = Object.freeze({videoId:'dTS_aNfpbIM',title:'Chest Pain (I Love)',artist:'Malcolm Todd',startSeconds:0});
-const DB_URL = 'https://stanbastienx-default-rtdb.firebaseio.com';
+const DB_URL = 'https://stanbastienx-default-rtdb.asia-southeast1.firebasedatabase.app';
 let cachedAccess = null;
 
 function videoIdFrom(input){
@@ -36,7 +36,7 @@ function config(){
   let account;
   try { account=JSON.parse(process.env.BASTIEN_FIREBASE_SERVICE_ACCOUNT || ''); }
   catch { throw Object.assign(new Error('Set BASTIEN_FIREBASE_SERVICE_ACCOUNT in hosting environment'),{status:503}); }
-  if(!account.client_email || !account.private_key || account.project_id!=='stanbastienx') throw Object.assign(new Error('Firebase service account must belong to stanbastienx project'),{status:503});
+  if(!account.client_email || !account.private_key || account.project_id!=='stanbastienx') throw Object.assign(new Error('Firebase service account must belong to existing stanbastienx project'),{status:503});
   const url=(process.env.BASTIEN_FIREBASE_DATABASE_URL || DB_URL).replace(/\/$/,'');
   if(url!==DB_URL) throw Object.assign(new Error('Firebase database URL must match existing project'),{status:503});
   return {account,url};

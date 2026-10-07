@@ -4,7 +4,7 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/12.18.0/firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCV0wMsXqqptmgBvcYSXowmQ6ah0_LsBHA",
   authDomain: "stanbastienx.firebaseapp.com",
-  databaseURL: "https://stanbastienx-default-rtdb.firebaseio.com",
+  databaseURL: "https://stanbastienx-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "stanbastienx",
   storageBucket: "stanbastienx.firebasestorage.app",
   messagingSenderId: "217347809451",
