@@ -140,10 +140,8 @@ body{will-change:auto;backface-visibility:hidden}
 </main>
 
 <script type="module">
-import { watchMembers } from './js/firebase-members.js';
+import { watchMembers, GROUPS } from './js/local-members.js';
 import { groupProfile } from './js/group-assets.js';
-import { GROUPS } from './js/firebase-config.js';
-import { MEMBER_SEED } from './js/member-seed.js';
 
 const search=document.getElementById('search');
 const lg=document.getElementById('leadersGrid');
@@ -194,10 +192,7 @@ if(GROUPS.includes(requested)){
   activeGroup=requested;
   document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x.dataset.filter===activeGroup));
 }
-watchMembers(next=>{data=GROUPS.some(g=>(next[g]||[]).length) ? next : MEMBER_SEED;render();},()=>{
-  empty.style.display='block';
-  empty.textContent='DATABASE CONNECTION ERROR';
-});
+watchMembers(next=>{data=next;render();});
 </script>
 
 <script src="./js/music.js?v=20260920-wellesley" defer></script>
