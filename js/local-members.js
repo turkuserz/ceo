@@ -1,6 +1,6 @@
 import { MEMBER_SEED } from './member-seed.js';
 export const GROUPS = ['BASTIEN','EVELYN','STANNOWAYHOME','JOPNOK','ASSASSIN'];
-const KEY = 'bastien-members-local-v1';
+const KEY = 'bastien-members-local-v2';
 const clone = x => JSON.parse(JSON.stringify(x));
 function seed(){return Object.fromEntries(GROUPS.map(group=>[group,(MEMBER_SEED[group]||[]).map((p,i)=>({...clone(p),id:`seed-${group}-${i}`}))]));}
 export function readMembersOnce(){

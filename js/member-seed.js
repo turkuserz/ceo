@@ -1,4 +1,4 @@
-/* User-provided member directory, October 2026. */
+/* User-provided member directory, updated October 2026. */
 export const MEMBER_SEED = {
   "BASTIEN": [
     {
@@ -38,7 +38,13 @@ export const MEMBER_SEED = {
       "photo": ""
     },
     {
-      "name": "Korn Bastien",
+      "name": "Alfred Bastien",
+      "role": "LEADER",
+      "facebook": "https://www.facebook.com/alfred.bangsaen",
+      "photo": ""
+    },
+    {
+      "name": "Jizo Bastien",
       "role": "MEMBER",
       "facebook": "https://www.facebook.com/a1erty.bastien.007",
       "photo": ""
@@ -155,6 +161,78 @@ export const MEMBER_SEED = {
       "name": "Mhoohom Bastien",
       "role": "MEMBER",
       "facebook": "https://www.facebook.com/profile.php?id=61582310846768",
+      "photo": ""
+    },
+    {
+      "name": "Curse Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/profile.php?id=61590711203734",
+      "photo": ""
+    },
+    {
+      "name": "Fran Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/Franbkk",
+      "photo": ""
+    },
+    {
+      "name": "Dell Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/Dell.Bastien",
+      "photo": ""
+    },
+    {
+      "name": "Bentley Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/bentley.jiccoromantic",
+      "photo": ""
+    },
+    {
+      "name": "Lesly Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/leslyst4n",
+      "photo": ""
+    },
+    {
+      "name": "Cypher Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/cypher.youknamsay",
+      "photo": ""
+    },
+    {
+      "name": "Jared Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/jared.jared.jared.628707",
+      "photo": ""
+    },
+    {
+      "name": "Churinmair Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/nefmunichsawako",
+      "photo": ""
+    },
+    {
+      "name": "Heatherperiwinkle Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/profile.php?id=61579334806215",
+      "photo": ""
+    },
+    {
+      "name": "Lxon Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/lxon.bastien",
+      "photo": ""
+    },
+    {
+      "name": "Lyka Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/lyka.jiccoromantic",
+      "photo": ""
+    },
+    {
+      "name": "Chiesa Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/chiesa.bastien",
       "photo": ""
     }
   ],
