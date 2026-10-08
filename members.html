@@ -143,6 +143,7 @@ body{will-change:auto;backface-visibility:hidden}
 import { watchMembers } from './js/firebase-members.js';
 import { groupProfile } from './js/group-assets.js';
 import { GROUPS } from './js/firebase-config.js';
+import { MEMBER_SEED } from './js/member-seed.js';
 
 const search=document.getElementById('search');
 const lg=document.getElementById('leadersGrid');
@@ -193,7 +194,7 @@ if(GROUPS.includes(requested)){
   activeGroup=requested;
   document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x.dataset.filter===activeGroup));
 }
-watchMembers(next=>{data=next;render();},()=>{
+watchMembers(next=>{data=GROUPS.some(g=>(next[g]||[]).length) ? next : MEMBER_SEED;render();},()=>{
   empty.style.display='block';
   empty.textContent='DATABASE CONNECTION ERROR';
 });

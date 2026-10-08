@@ -90,6 +90,7 @@ body{overflow-y:scroll!important}
 <div class="dashboard"><div><div class="section-label">GROUPS & MEMBERS</div><div class="admin-scroll-hint">SCROLL TO VIEW ALL GROUPS</div></div><div class="stats"><div class="stat"><b id="totalMembers">0</b><span>TOTAL</span></div><div class="stat"><b id="totalLeaders">0</b><span>LEADERS</span></div><div class="stat"><b id="totalGroups">0</b><span>GROUPS</span></div></div></div>
 <section class="groups" id="groups"></section>
 <div class="state" id="state">LOADING DATABASE...</div>
+<div class="danger-zone"><button class="action" id="importMembers" type="button">IMPORT 58 MEMBERS (BASTIEN / EVELYN / ASSASSIN)</button></div>
 <div class="danger-zone"><button class="action" id="clearAll" type="button">CLEAR ALL MEMBERS</button></div>
 </main>
 <div class="modal" id="editModal" aria-hidden="true"><div class="modal-box"><div class="modal-head"><div class="modal-title">EDIT MEMBER</div><button class="modal-close" id="editClose" type="button">CLOSE</button></div><form id="editForm"><div class="edit-grid"><label class="field-label">NAME<input id="editName" maxlength="40" placeholder="Member name..." required></label><label class="field-label">FACEBOOK / PROFILE LINK<input id="editFacebook" type="url" placeholder="https://..."></label><label class="field-label">ROLE<select id="editRole"><option value="MEMBER">MEMBER</option><option value="LEADER">LEADER</option></select></label><label class="edit-photo"><img class="edit-preview" id="editPreview" src="./assets/logobastien.png" alt=""><span>CHANGE PROFILE PHOTO<input id="editPhoto" type="file" accept="image/png,image/jpeg,image/webp"></span></label></div><div class="modal-actions"><button type="button" id="editCancel">CANCEL</button><button class="save" type="submit" id="editSave">SAVE CHANGES</button></div></form></div></div>
@@ -98,6 +99,7 @@ body{overflow-y:scroll!important}
 import { checkKeyAuthSession, logoutKeyAuth, getKeyAuthUser } from './js/keyauth-login.js';
 import { watchMembers, addMember, updateMember, deleteMember, clearMembers } from './js/firebase-members.js';
 import { GROUPS } from './js/firebase-config.js';
+import { MEMBER_SEED } from './js/member-seed.js';
 import { groupProfile } from './js/group-assets.js';
 import { initMusicAdmin } from './js/music-admin.js';
 
@@ -185,6 +187,25 @@ editForm.onsubmit=async e=>{
   catch(err){state.textContent='UPDATE ERROR: '+err.message;} finally{editSave.disabled=false;}
 };
 
+document.getElementById('importMembers').onclick=async e=>{
+  if(!ready)return;
+  const button=e.currentTarget;
+  if(!confirm('เพิ่มรายชื่อที่ยังไม่มีลง Firebase โดยเก็บสมาชิกเดิมทั้งหมดไว้ใช่ไหม?'))return;
+  button.disabled=true;let added=0,skipped=0;
+  try{
+    for(const group of GROUPS){
+      const existing=new Set((data[group]||[]).map(p=>String(p.name||'').trim().toLowerCase()));
+      for(const person of MEMBER_SEED[group]||[]){
+        if(existing.has(person.name.toLowerCase())){skipped++;continue;}
+        state.textContent=`IMPORTING ${group} • ${added} ADDED`;
+        await addMember(group,person);
+        existing.add(person.name.toLowerCase());added++;
+      }
+    }
+    state.textContent=`IMPORT COMPLETE • ${added} ADDED • ${skipped} EXISTING SKIPPED`;
+  }catch(err){state.textContent=`IMPORT ERROR AFTER ${added} ADDED: ${err.message}`;}
+  finally{button.disabled=false;}
+};
 clearBtn.onclick=async()=>{if(!ready||!confirm('ลบสมาชิกทั้งหมดจากทุกกลุ่มใน Firebase ใช่ไหม?'))return;clearBtn.disabled=true;state.textContent='CLEARING DATABASE...';try{await clearMembers();state.textContent='ALL MEMBERS CLEARED';}catch(e){state.textContent='CLEAR ERROR: '+e.message;}finally{clearBtn.disabled=false;}};
 logoutBtn.onclick=async()=>{await logoutKeyAuth();location.replace('/login');};
 </script>
