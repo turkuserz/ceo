@@ -4,7 +4,22 @@ const KEY = 'bastien-members-local-v2';
 const clone = x => JSON.parse(JSON.stringify(x));
 function seed(){return Object.fromEntries(GROUPS.map(group=>[group,(MEMBER_SEED[group]||[]).map((p,i)=>({...clone(p),id:`seed-${group}-${i}`}))]));}
 export function readMembersOnce(){
-  try { const saved=localStorage.getItem(KEY); if(saved){const obj=JSON.parse(saved);return Object.fromEntries(GROUPS.map(group=>[group,Array.isArray(obj[group])?obj[group]:[]]));} }
+  try { const saved=localStorage.getItem(KEY); if(saved){
+    const obj=JSON.parse(saved);
+    if(Array.isArray(obj.BASTIEN)){
+      const members=obj.BASTIEN;
+      const old=members.find(p=>p.name==='Churinmair Bastien');
+      if(old)old.name='Aņgelirispęriwinklē Bastien';
+      const arcus=members.find(p=>p.name==='Arcus Bastien');
+      if(arcus)arcus.facebook='https://www.facebook.com/profile.php?id=61595233526511';
+      obj.BASTIEN=members.filter(p=>p.name!=='NXx Bastien');
+      const kury=obj.BASTIEN.find(p=>p.name==='Kury Bastien');
+      if(kury)kury.facebook='https://www.facebook.com/profile.php?id=61591677795442';
+      else obj.BASTIEN.push({...clone(MEMBER_SEED.BASTIEN.find(p=>p.name==='Kury Bastien')),id:'seed-BASTIEN-kury-2026'});
+      if(JSON.stringify(obj)!==saved)localStorage.setItem(KEY,JSON.stringify(obj));
+    }
+    return Object.fromEntries(GROUPS.map(group=>[group,Array.isArray(obj[group])?obj[group]:[]]));
+  } }
   catch(e){console.warn('Local member storage unavailable',e);}
   return seed();
 }

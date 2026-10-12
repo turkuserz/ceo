@@ -44,6 +44,12 @@ export const MEMBER_SEED = {
       "photo": ""
     },
     {
+      "name": "Kury Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/profile.php?id=61591677795442",
+      "photo": ""
+    },
+    {
       "name": "Jizo Bastien",
       "role": "MEMBER",
       "facebook": "https://www.facebook.com/a1erty.bastien.007",
@@ -146,12 +152,6 @@ export const MEMBER_SEED = {
       "photo": ""
     },
     {
-      "name": "NXx Bastien",
-      "role": "MEMBER",
-      "facebook": "https://www.facebook.com/profile.php?id=61553247248494",
-      "photo": ""
-    },
-    {
       "name": "Kay Bastien",
       "role": "MEMBER",
       "facebook": "https://www.facebook.com/profile.php?id=61594598213032",
@@ -206,7 +206,7 @@ export const MEMBER_SEED = {
       "photo": ""
     },
     {
-      "name": "Churinmair Bastien",
+      "name": "Aņgelirispęriwinklē Bastien",
       "role": "MEMBER",
       "facebook": "https://www.facebook.com/nefmunichsawako",
       "photo": ""
