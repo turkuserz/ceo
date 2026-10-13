@@ -44,6 +44,12 @@ export const MEMBER_SEED = {
       "photo": ""
     },
     {
+      "name": "Itachi Bastien",
+      "role": "MEMBER",
+      "facebook": "https://www.facebook.com/profile.php?id=61595392258515",
+      "photo": ""
+    },
+    {
       "name": "Kury Bastien",
       "role": "MEMBER",
       "facebook": "https://www.facebook.com/profile.php?id=61591677795442",
@@ -368,9 +374,9 @@ export const MEMBER_SEED = {
       "photo": ""
     },
     {
-      "name": "Baki Assassin",
+      "name": "Itachi Assassin",
       "role": "MEMBER",
-      "facebook": "https://www.facebook.com/KingBaki01",
+      "facebook": "https://www.facebook.com/profile.php?id=61595392258515",
       "photo": ""
     },
     {

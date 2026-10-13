@@ -16,6 +16,20 @@ export function readMembersOnce(){
       const kury=obj.BASTIEN.find(p=>p.name==='Kury Bastien');
       if(kury)kury.facebook='https://www.facebook.com/profile.php?id=61591677795442';
       else obj.BASTIEN.push({...clone(MEMBER_SEED.BASTIEN.find(p=>p.name==='Kury Bastien')),id:'seed-BASTIEN-kury-2026'});
+      // Keep existing browser data, update the renamed member and its Facebook URL.
+      for(const group of GROUPS){
+        const members=Array.isArray(obj[group])?obj[group]:[];
+        for(const person of members){
+          if(typeof person.name==='string' && /baki/i.test(person.name)){
+            person.name=person.name.replace(/baki/gi,'Itachi');
+            person.facebook='https://www.facebook.com/profile.php?id=61595392258515';
+          }
+          if(person.name==='Itachi Assassin')person.facebook='https://www.facebook.com/profile.php?id=61595392258515';
+        }
+      }
+      const itachi=obj.BASTIEN.find(p=>p.name==='Itachi Bastien');
+      if(itachi)itachi.facebook='https://www.facebook.com/profile.php?id=61595392258515';
+      else obj.BASTIEN.push({...clone(MEMBER_SEED.BASTIEN.find(p=>p.name==='Itachi Bastien')),id:'seed-BASTIEN-itachi-2026'});
       if(JSON.stringify(obj)!==saved)localStorage.setItem(KEY,JSON.stringify(obj));
     }
     return Object.fromEntries(GROUPS.map(group=>[group,Array.isArray(obj[group])?obj[group]:[]]));
